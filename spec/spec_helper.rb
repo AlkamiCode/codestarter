@@ -1,6 +1,9 @@
 require "simplecov"
 SimpleCov.start "rails"
 
+require "coveralls"
+Coveralls.wear!
+
 RSpec.configure do |config|
   require "capybara/rspec"
   config.expect_with :rspec do |expectations|
