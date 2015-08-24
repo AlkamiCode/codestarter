@@ -1,28 +1,47 @@
-== README
+## Code Starter
 
-Jurassic Parka is an online clothing shop for dinosaurs. After all, our cold-blooded friends deserve to stay warm.
+---
 
-Feature List:
+[![Stories in Ready](https://badge.waffle.io/marlabrizel/the_pivot.svg?label=ready&title=Ready)](http://waffle.io/marlabrizel/the_pivot) [![Build Status](https://travis-ci.org/marlabrizel/the_pivot.svg)](https://travis-ci.org/marlabrizel/the_pivot)
 
-VISITOR:
-* Can browse items
-* Can browse item categories
-* Can add items to a cart while logged out
-* Can register for an account
+##### [Marla Brizel](https://github.com/marlabrizel), [Dmitry Vizersky](https://github.com/Dmitry1007), [Lovisa Svallingson](https://github.com/applegrain)
 
-REGISTERED USER:
-* All visitor functionality listed above
-* Can add items to a cart and check out
-* Can place an order
-* Can view past orders and refine views based on filtering criteria
+The Pivot is the first project in Module 3 at the Turing School. Each group are given a legacy project to work with. Code Starter is a microlending platform where users can create code projects and receive micro loans from other users. Code Starter is pivoted from [Jurassic Parka](https://github.com/marlabrizel/jurassic_parka), a clothing store for dinosaurs.
 
-ADMIN USER:
-* Can view all orders for all users
-* Can add items to catalog
-* Can edit items
-* Can create sales
-* Can view current sales
-* Can end a current sale
+[Project Outline](https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.markdown#technical-expectations) | [Heroku](http://codestarter.herokuapp.com)
 
-Team members:
-Mitch Ashby, Drew Conly, Marla Brizel
+### Instructions
+
+* clone the project in your terminal by running `git clone git@github.com:marlabrizel/the_pivot.git`
+* start the server with `rails s` and visit `http://localhost:3000` in your preferred browser
+* to run the tests, run `bundle exec rspec` in the terminal
+
+### Areas of Focus
+
+* Working with Multitenancy
+* Implementing JavaScript
+* Securing a Rails App
+* Sending Email
+* Creating Seed files
+
+### Git Workflow
+
+**Starting a new branch**
+
+* checkout a branch named after the waffle story and include the number
+* example: 2-admin-can-create-meals
+* use Rubocop locally
+* Squash and order commits by spec
+* Push branch and tag with [WIP] until story is completed
+
+**Creating a Pull Request**
+
+* close the waffle issue on GitHub
+* Notify group members on Slack when PR is ready for code review
+* Aim to have the PR reviewed within 45 minutes of submission
+* Fix eventual Hound errors before merging the PR
+* The group member that merges the PR should
+* delete the branch on GitHub
+* notify the group members on Slack to pull from master
+
+
