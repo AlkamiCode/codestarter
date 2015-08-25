@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "homepage#index"
-  resources :items, only: [:index, :show]
+  resources :projects, only: [:index, :show]
   resources :categories, only: [:show, :index]
   resources :cart_items, only: [:index, :create, :destroy] do
     member do
