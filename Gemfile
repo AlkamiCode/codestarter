@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-gem 'bootstrap3-rails'
+gem 'bootstrap-sass'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "rails", "4.2.3"
 # Use postgresql as the database for Active Record
