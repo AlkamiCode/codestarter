@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812232156) do
+ActiveRecord::Schema.define(version: 20150825221858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,25 +35,13 @@ ActiveRecord::Schema.define(version: 20150812232156) do
     t.string   "slug"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
-    t.integer  "price"
-    t.string   "image",       default: "https://www.big-lies.org/NUKE-LIES/profile.ak.fbcdn.net/hprofile-ak-snc4/50335_2236820400_8469_n.jpg"
-    t.datetime "created_at",                                                                                                                   null: false
-    t.datetime "updated_at",                                                                                                                   null: false
-    t.integer  "category_id"
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.integer  "quantity"
-    t.integer  "item_id"
     t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
@@ -65,12 +53,36 @@ ActiveRecord::Schema.define(version: 20150812232156) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "image"
+    t.integer  "company_id"
+    t.integer  "current_funding"
+    t.integer  "funding_goal"
+    t.datetime "end_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "sales", force: :cascade do |t|
     t.string   "name"
     t.integer  "discount"
     t.integer  "status",     default: 0
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "table_projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "image"
+    t.integer  "company_id"
+    t.integer  "current_funding"
+    t.integer  "funding_goal"
+    t.datetime "end_date"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,7 +94,6 @@ ActiveRecord::Schema.define(version: 20150812232156) do
   end
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
 end
