@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
 gem 'puma'
-gem 'faker'
 gem 'bootstrap-sass'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem "rails", "4.2.3"
@@ -17,6 +16,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "coveralls", require: false
 
 group :development, :test do
+  gem 'faker'
   gem "byebug"
   gem "web-console", "~> 2.0"
   gem "spring"
