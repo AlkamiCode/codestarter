@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-gem 'puma'
 gem 'faker'
+gem 'puma'
 gem 'bootstrap-sass'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem "rails", "4.2.3"

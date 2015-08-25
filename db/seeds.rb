@@ -7,12 +7,15 @@ class Seed
   def generate_projects
     500.times do |i|
       project = Project.create!(
-        name: Faker::Book.title,
+        name: Faker::Lorem.word,
         description: Faker::Lorem.paragraph,
-        image_url: Faker::Avatar.image,
-        company_id: rand(1..20)
+        image: Faker::Avatar.image,
+        company_id: rand(1..20),
+        current_funding: rand(1..10000),
+        funding_goal: rand(1..2000),
+        end_date: Faker::Date.forward(30)
         )
-      puts "Category #{i}: #{category.name} successfully created!"
+      puts "Project #{i}: #{project.name} successfully created!"
     end
   end
 end
