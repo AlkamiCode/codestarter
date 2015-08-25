@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-gem 'bootstrap3-rails'
+gem 'bootstrap-sass'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem "rails", "4.2.3"
 gem "pg"
 gem "sass-rails", "~> 5.0"
