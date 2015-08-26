@@ -2,6 +2,9 @@ require "rails_helper"
 RSpec.describe Project, type: :model do
   context "a valid project" do
     let!(:project) { Fabricate(:project) }
+    let!(:project_2) { Fabricate(:project, name: "second name") }
+    let!(:project_3) { Fabricate(:project, name: "third name") }
+    let!(:project_4) { Fabricate(:project, name: "fourth name") }
 
     it "has a name" do
       expect(project.name).to eq "Sample Project"
@@ -42,6 +45,10 @@ RSpec.describe Project, type: :model do
 
     it "has a formatted end date" do
       expect(project.pretty_end_date).to eq "December 12, 2015"
+    end
+
+    it "returns 4 random projects" do
+      expect(project.random_projects.count).to eq 4
     end
   end
 
