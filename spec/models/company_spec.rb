@@ -11,13 +11,17 @@ RSpec.describe Company, type: :model do
     it "has a description" do
       expect(company.description).to eq "We are a company that's building software."
     end
+
+    it "has a url" do
+      expect(company.url).to eq "sample-company"
+    end
   end
 
   context "an invalid company" do
     let(:company) { Fabricate.build(:company) }
 
     it "it invalid without a name" do
-      company.name = nil
+      company.name = ""
       expect(company).not_to be_valid
     end
 
