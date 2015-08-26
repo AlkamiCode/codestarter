@@ -1,6 +1,7 @@
 class Seed
   def self.start
     seed = Seed.new
+    seed.generate_companies
     seed.generate_projects
   end
 
@@ -16,6 +17,17 @@ class Seed
         end_date: Faker::Date.forward(30)
         )
       puts "Project #{i}: #{project.name} successfully created!"
+    end
+  end
+
+  def generate_companies
+    20.times do |i|
+      company = Company.create!(
+        name: Faker::Company.name,
+        description: Faker::Company.catch_phrase,
+        logo: Faker::Company.logo
+      )
+    puts "Company #{i}: #{company.name} successfully created!"
     end
   end
 end
