@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "homepage#index"
 
+  resources :companies, only: [:index]
+  
   namespace :companies, path: ':company', as: :company do
     resources :projects, only: [:index, :show]
     resources :orders, only: [:index, :show, :create]
@@ -10,7 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only: [:index, :show]
-  resources :companies, only: [:index]
   resources :categories, only: [:show, :index]
 
   resources :cart_items, only: [:index, :create, :destroy] do
