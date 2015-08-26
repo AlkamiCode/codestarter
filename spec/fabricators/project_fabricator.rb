@@ -5,4 +5,5 @@ Fabricator(:project) do
   company_id 1
   current_funding 200
   funding_goal 500
+  end_date "2015-12-12"
 end
