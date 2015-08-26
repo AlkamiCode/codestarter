@@ -1,8 +1,23 @@
 b {
-  color: slategrey;
+  color: #ed431f;
+  font-family: monospace;
 }
 
-h1 {
-  color: #3D71C0;
+header {
+  opacity: .9;
 }
 
+h1.header-title {
+  color: #ed431f;
+  font-family: monospace;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 52px;
+}
+
+.navbar-default .nav > li > a, .navbar-default .nav > li > a:focus {
+    color: #ed431f;
+}
+
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus:hover {
+    color: black;
+}
