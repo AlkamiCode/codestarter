@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature "UserCanViewProjects", type: :feature do
-  # let!(:company1) { Company.create!(name: "Ocean World", description: "the sea")}
-  # let!(:company2) { Company.create!(name: "Turing", description: "teh codez")}
   let!(:project1) { Project.create!(name: "A name", description: "best project ever", current_funding: 500) }
   let!(:project2) { Project.create!(name: "Another project", description: "ok project", current_funding: 25) }
 
