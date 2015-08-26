@@ -5,7 +5,7 @@ RSpec.describe "guest can visit single projects", type: :feature do
     let!(:project) { Fabricate(:project) }
 
     it "can visit a single project" do
-      visit project_path
+      visit projects_path
 
       click_link "Sample Project"
       expect(current_path).to eq project_path(project)
