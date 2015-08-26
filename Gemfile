@@ -4,6 +4,7 @@ gem 'puma'
 gem 'bootstrap-sass'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'fittextjs_rails'
+gem "font-awesome-rails"
 gem "rails", "4.2.3"
 gem "pg"
 gem "sass-rails", "~> 5.0"
