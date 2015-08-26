@@ -11,7 +11,9 @@ class Project < ActiveRecord::Base
   validates :name, :image, :company_id, uniqueness: true
 
   def funding_in_percentage
-    (current_funding.to_f / funding_goal.to_f) * 100
+    current_funding > funding_goal ?
+                               100 :
+                               (current_funding.to_f / funding_goal.to_f) * 100
   end
 
   def pretty_end_date

@@ -35,13 +35,18 @@ RSpec.describe Project, type: :model do
       expect(project.funding_in_percentage).to eq 40
     end
 
+    it "has a funding level of 100% if the funding goal is reached" do
+      project.current_funding = 600
+      expect(project.funding_in_percentage).to eq 100
+    end
+
     it "has a formatted end date" do
       expect(project.pretty_end_date).to eq "December 12, 2015"
     end
   end
 
   context "an invalid project" do
-    let(:project) { Fabricate.build(:project, name: nil) }
+    let(:project) { Fabricate.build(:project) }
 
     it "does not have a name" do
       project.name = nil

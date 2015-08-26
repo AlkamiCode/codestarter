@@ -24,25 +24,19 @@
             </div>
 
             <div class="funding-stats">
-                <h1>$<%= @project.current_funding %></h1>
-                <p>pledged of $<strong><%= @project.funding_goal %></strong> goal</p>
+                <h1><%= number_to_currency @project.current_funding %></h1>
+                <p>pledged of <strong><%= number_to_currency @project.funding_goal %></strong> goal</p>
 
                 <div class="progress">
-                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= @project.funding_in_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.funding_in_percentage %>">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= @project.funding_in_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.funding_in_percentage %>%">
                     <span class="sr-only"><%= @project.funding_in_percentage %>% Complete (success)</span>
                   </div>
                 </div>
             </div>
 
             <div class="funding-stats">
-                <h1><%= @project.pretty_end_date %></h1>
-                <p>end date</p>
-
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                    <span class="sr-only">40% Complete (success)</span>
-                  </div>
-                </div>
+                <h1><%= distance_of_time_in_words Time.now, @project.end_date %></h1>
+                <p>to go until funding ends at <%= @project.pretty_end_date %></p>
             </div>
 
             <div class="funding-button">
