@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :url, presence: true, uniqueness: true
 
   before_validation :generate_url
 
