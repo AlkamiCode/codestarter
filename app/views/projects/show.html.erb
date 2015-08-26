@@ -4,8 +4,8 @@
     <!-- Project Heading -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Sample Project
-                <small>By Sample Company</small>
+            <h1 class="page-header"><%= @project.name %>
+                <small><%= link_to "Sample Company", "#" %></small>
             </h1>
         </div>
     </div>
@@ -15,28 +15,38 @@
     <div class="row project-details">
 
         <div class="col-md-8">
-            <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+            <img class="img-responsive" src="<%= @project.image %>" alt="">
         </div>
 
         <div class="col-md-4">
-            <div class="funding-stats">
-                <h1>265</h1>
-                <p>backers</p>
+            <div class="project-description">
+                <p><%= @project.description %></p>
             </div>
 
             <div class="funding-stats">
-                <h1>$1000</h1>
-                <p>current funding</p>
+                <h1>$<%= @project.current_funding %></h1>
+                <p>pledged of $<strong><%= @project.funding_goal %></strong> goal</p>
+
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= @project.funding_in_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.funding_in_percentage %>">
+                    <span class="sr-only"><%= @project.funding_in_percentage %>% Complete (success)</span>
+                  </div>
+                </div>
             </div>
 
             <div class="funding-stats">
-                <h1>$2000</h1>
-                <p>pledged goal</p>
+                <h1><%= @project.pretty_end_date %></h1>
+                <p>end date</p>
+
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                    <span class="sr-only">40% Complete (success)</span>
+                  </div>
+                </div>
             </div>
 
-            <div class="funding-stats">
-                <h1>25 September 2015</h1>
-                <p>pledged goal</p>
+            <div class="funding-button">
+                <%= button_to "Fund This Project", "#", class: "btn btn-primary" %>
             </div>
 
         </div>
