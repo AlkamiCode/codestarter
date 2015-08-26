@@ -1,0 +1,40 @@
+.page-header {
+  color: green;
+  a {
+    color: grey;
+    hover {
+      color:black;
+    }
+  }
+}
+
+.project-description {
+  font-size: 20px;
+}
+
+.funding-stats {
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 255, .1);
+}
+
+.funding-stats h1 {
+  font-size: 35px;
+}
+
+.funding-stats p {
+  color: green;
+}
+
+.funding-button {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.related-projects a {
+  color: grey;
+}
+
+.related-projects a:hover {
+  color: black;
+}
+
