@@ -30,6 +30,10 @@ RSpec.describe Project, type: :model do
     it "has an end date" do
       expect(project.end_date).to eq "2015-12-12"
     end
+
+    it "has a funding percentage level" do
+      expect(project.funding_in_percentage).to eq 40
+    end
   end
 
   context "an invalid project" do

@@ -9,4 +9,8 @@ class Project < ActiveRecord::Base
             :image,
             :company_id, presence: true
   validates :name, :image, :company_id, uniqueness: true
+
+  def funding_in_percentage
+    (current_funding.to_f / funding_goal.to_f) * 100
+  end
 end
