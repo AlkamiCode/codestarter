@@ -30,6 +30,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "simplecov"
   gem "mocha"
+  gem "pry-rails"
 end
 
 group :production do

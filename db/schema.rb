@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825221858) do
+ActiveRecord::Schema.define(version: 20150826212943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20150825221858) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "url"
+    t.string   "logo"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -57,13 +66,15 @@ ActiveRecord::Schema.define(version: 20150825221858) do
     t.string   "name"
     t.string   "description"
     t.string   "image"
-    t.integer  "company_id"
     t.integer  "current_funding"
     t.integer  "funding_goal"
     t.datetime "end_date"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "company_id"
   end
+
+  add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
 
   create_table "sales", force: :cascade do |t|
     t.string   "name"
@@ -84,4 +95,5 @@ ActiveRecord::Schema.define(version: 20150825221858) do
   add_foreign_key "addresses", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "projects", "companies"
 end

@@ -6,9 +6,7 @@ class Project < ActiveRecord::Base
             :funding_goal,
             :end_date,
             :name,
-            :image,
-            :company_id, presence: true
-  validates :name, uniqueness: true
+            :image, presence: true
 
   def funding_in_percentage
     if current_funding > funding_goal

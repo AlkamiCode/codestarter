@@ -8,15 +8,15 @@ RSpec.describe OrderItem, type: :model do
     @order_item = OrderItem.create!(quantity: 2, item_id: @item.id, order_id: @order.id)
   end
 
-  it "belongs to an item" do
+  xit "belongs to an item" do
     expect(@order_item.item_id).to eq(@item.id)
   end
 
-  it "belongs to an order" do
+  xit "belongs to an order" do
     expect(@order_item.order_id).to eq(@order.id)
   end
 
-  it "has a quantity" do
+  xit "has a quantity" do
     expect(@order_item.quantity).to eq(2)
   end
 end
