@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show, :create]
   get "/dashboard", to: "users#show"
   post "/dashboard", to: "addresses#create"
-  get "/cart", to: "cart#index"
+  get "/cart", to: "cart_projects#index"
   get "/signup", to: "users#new"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
