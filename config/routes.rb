@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   root to: "homepage#index"
+
+  namespace :companies, path: ':company', as: :company do
+    resources :projects, only: [:index, :show]
+    resources :orders, only: [:index, :show, :create]
+    resources :users, except: [:show] do
+      resources :addresses, only: [:new, :create, :show]
+    end
+  end
+
   resources :projects, only: [:index, :show]
   resources :categories, only: [:show, :index]
 
@@ -7,10 +16,6 @@ Rails.application.routes.draw do
     member do
       post :increment, :decrement
     end
-  end
-
-  resources :users, except: [:show] do
-    resources :addresses, only: [:new, :create, :show]
   end
 
   namespace :admin do
@@ -24,7 +29,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, only: [:index, :show, :create]
   get "/dashboard", to: "users#show"
   post "/dashboard", to: "addresses#create"
   get "/cart", to: "cart_projects#index"
