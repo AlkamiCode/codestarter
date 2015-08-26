@@ -13,4 +13,8 @@ class Project < ActiveRecord::Base
   def funding_in_percentage
     (current_funding.to_f / funding_goal.to_f) * 100
   end
+
+  def pretty_end_date
+    end_date.strftime("%B %d, %Y")
+  end
 end
