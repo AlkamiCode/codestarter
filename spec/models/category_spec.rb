@@ -12,7 +12,7 @@ RSpec.describe Category, type: :model do
       expect(category.slug).to eq("hat_stuff")
     end
 
-    it "has many items" do
+    xit "has many items" do
       expect(category.items).to eq([])
     end
   end
