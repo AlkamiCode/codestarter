@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only: [:index, :show]
+  resources :companies, only: [:index]
   resources :categories, only: [:show, :index]
 
   resources :cart_items, only: [:index, :create, :destroy] do
