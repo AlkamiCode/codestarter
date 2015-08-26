@@ -1,6 +1,7 @@
 require "rails_helper"
 RSpec.describe Project, type: :model do
   context "a valid project" do
+    let!(:company) { Fabricate(:company) }
     let!(:project) { Fabricate(:project) }
     let!(:project_2) { Fabricate(:project, name: "second name") }
     let!(:project_3) { Fabricate(:project, name: "third name") }
@@ -16,10 +17,6 @@ RSpec.describe Project, type: :model do
 
     it "has an image" do
       expect(project.image).to eq "hello.lpg"
-    end
-
-    it "is associated to a company" do
-      expect(project.company_id).to eq 1
     end
 
     it "has a current funding level" do
@@ -67,11 +64,6 @@ RSpec.describe Project, type: :model do
 
     it "does not have an image" do
       project.image = nil
-      expect(project).to_not be_valid
-    end
-
-    it "does not have an associated company" do
-      project.company_id = nil
       expect(project).to_not be_valid
     end
 
