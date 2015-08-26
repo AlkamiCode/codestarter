@@ -17,6 +17,7 @@ gem "coveralls", require: false
 gem 'faker'
 
 group :development, :test do
+  gem 'fabrication'
   gem "byebug"
   gem "web-console", "~> 2.0"
   gem "spring"

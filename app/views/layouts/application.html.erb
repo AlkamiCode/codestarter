@@ -9,10 +9,14 @@
 </head>
 
 <body>
-  <%= render "layouts/navigation_bar" %>
+  <div class="header">
+    <%= render "layouts/navigation_bar" %>
+  </div>
+
   <% flash.each do |type, msg| %>
     <%= content_tag :div, msg.html_safe, class: "flash_#{type}" %>
   <% end %>
+
   <%= yield %>
 
   <script>

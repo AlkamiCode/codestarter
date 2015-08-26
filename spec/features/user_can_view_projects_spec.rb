@@ -1,16 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature "UserCanViewProjects", type: :feature do
-  let!(:project1) { Project.create!(name: "A name", description: "best project ever", current_funding: 500) }
-  let!(:project2) { Project.create!(name: "Another project", description: "ok project", current_funding: 25) }
+  let!(:project) { Fabricate(:project) }
+  let!(:project_2) { Fabricate(:project, name: "Second Project") }
 
   it "can view all projects from the projects page" do
     visit projects_path
-    expect(page).to have_content("A name")
-    expect(page).to have_content("Another project")
-    expect(page).to have_content("best project ever")
-    expect(page).to have_content("ok project")
-    expect(page).to have_content("Current Funding: $500.00")
-    expect(page).to have_content("Current Funding: $25.00")
+    expect(page).to have_content("Sample Project")
+    expect(page).to have_content("Second Project")
+    expect(page).to have_content("To make the sample world a better place.")
+    expect(page).to have_content("Current Funding: $200.00")
+    expect(page).to have_content("Current Funding: $200.00")
   end
 end
