@@ -10,17 +10,17 @@ RSpec.describe "guest can visit single projects", type: :feature do
       click_link "Sample Project"
       expect(current_path).to eq project_path(project)
 
-      within(".navbar") do
-        expect(page).to have_content "Sample Project"
-        expect(page).to have_button "Login"
+      within(".header") do
+        expect(page).to have_content "CodeStarter"
+        expect(page).to have_link "Sign Up"
+        expect(page).to have_link "Login"
       end
 
-      within "content" do
-        within "card" do
-          expect(page).to have_content "Sample Project"
-          expect(page).to have_content "Current funding: 200"
-          expect(page).to have_content "Funding goal: 500"
-          expect(page).to have_content "Created by Sample Company"
+      within ".project-details" do
+        within ".col-md-4" do
+          expect(page).to have_content "265 backers"
+          expect(page).to have_content "$1000 current funding"
+          expect(page).to have_content "$2000 pledged goal"
         end
       end
     end
