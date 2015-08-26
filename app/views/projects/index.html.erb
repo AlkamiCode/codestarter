@@ -1,26 +1,28 @@
 <div class="container">
   <h2>Explore <span class="active-projects"><%= @projects.count %></span> active projects</h2>
 
-  <% @projects.in_groups_of(3, false) do |projects| %>
-    <div class="row">
-      <% projects.each do |project| %>
-        <div class="col-md-4 portfolio-item">
-          <div class="thumbnail">
-            <img src= <%= project.image %> alt= <%= project.name %>>
-            <div class="caption">
-              <h3><%= project.name %></h3>
-              <p class="all-projects-description"><%= project.description %></p>
-              <div class="progress">
-                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.funding_in_percentage %>%">
+  <%= will_paginate %>
+    <% @projects.in_groups_of(3, false) do |projects| %>
+      <div class="row">
+        <% projects.each do |project| %>
+          <div class="col-md-4 portfolio-item">
+            <div class="thumbnail">
+              <img src= <%= project.image %> alt= <%= project.name %>>
+              <div class="caption">
+                <h3><%= project.name %></h3>
+                <p class="all-projects-description"><%= project.description %></p>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.funding_in_percentage %>%">
+                  </div>
                 </div>
+                <p><span class="percentage-of-goal"><%= project.funding_in_percentage %>%</span> funded</p>
+                <p>Current Funding: <strong class="funding"><%= number_to_currency project.current_funding %></strong></p>
+                <%= link_to "View Project", project_path(project), class: "btn btn-info", role: "button" %>
               </div>
-              <p><span class="percentage-of-goal"><%= project.funding_in_percentage %>%</span> funded</p>
-              <p>Current Funding: <strong class="funding"><%= number_to_currency project.current_funding %></strong></p>
-              <%= link_to "View Project", project_path(project), class: "btn btn-info", role: "button" %>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <%= will_paginate %>
 </div>
