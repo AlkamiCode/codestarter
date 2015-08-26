@@ -16,6 +16,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "coveralls", require: false
 
 group :development, :test do
+  gem 'fabrication'
   gem 'faker'
   gem "byebug"
   gem "web-console", "~> 2.0"
