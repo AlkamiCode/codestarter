@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
   end
 
+  def update
+    binding.pry
+  end
+
   private
 
   def user_params

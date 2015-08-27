@@ -32,10 +32,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/dashboard", to: "users#show"
+  get  "/dashboard", to: "users#show"
   post "/dashboard", to: "addresses#create"
-  get "/cart", to: "cart_items#index"
-  post "/signup", to: "users#create"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
+  get  "/cart",      to: "cart_items#index"
+  post "/signup",    to: "users#create"
+  put  "/user/update",    to: "users#update"
+  post "/login",     to: "sessions#create"
+  delete "/logout",  to: "sessions#destroy"
 end
