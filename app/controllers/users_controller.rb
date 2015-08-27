@@ -11,11 +11,11 @@ class UsersController < ApplicationController
       if @user.role == 0
         redirect_to root_path
       else
-        redirect_to dashboard_path
+        redirect_to :back
       end
     else
       flash[:error] = "Need Username and Password"
-      render :new
+      render :back
     end
   end
 
