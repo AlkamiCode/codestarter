@@ -42,12 +42,14 @@
     <div class="modal-content">
       <%= form_for(:user, url: signup_path) do |f| %>
       <h3>Register</h3><br>
-      <h5>Username</h5>
+      <%= f.label :username %>
       <%= f.text_field :username %>
-      <h5>Password</h5>
+
+      <%= f.label :password %>
       <%= f.text_field :password, type: "password" %>
-      <h5>Password Confirmation</h5>
-      <%= f.text_field :password_confirmation, type: "password" %><br>
+
+      <%= f.label :password_confirmation %>
+      <%= f.text_field :password_confirmation, type: "password" %>
       <%= f.submit "Create Account", class: "btn" %>
     <% end %>
     </div>

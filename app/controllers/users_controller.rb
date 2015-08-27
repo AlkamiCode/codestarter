@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       if @user.role == 0
-        redirect_to root_path
+        redirect_to :back
       else
         redirect_to :back
       end
