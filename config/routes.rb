@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show]
   resources :categories, only: [:show, :index]
 
-  resources :cart_items, only: [:index, :create, :destroy] do
+  resources :cart_items, only: [:index, :create, :update, :destroy] do
     member do
       post :increment, :decrement
     end
