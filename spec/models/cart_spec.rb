@@ -1,18 +1,12 @@
 require "rails_helper"
 
 RSpec.describe Cart, type: :model do
-  it "exists" do
-    expect(Cart).to be
-  end
+  let!(:project) { Fabricate(:project) }
 
   context "#items" do
-    xit "returns an array of CartItems" do
-      item = Item.create(title: "Item 2",
-                         description: "Description 2",
-                         price: 40,
-                         image: "image url")
+    it "returns an array of CartItems" do
       data = Hash.new(0)
-      data[item.id] = 2
+      data[project.id] = 2
       cart = Cart.new(data)
 
       expect(cart.items.first).to be_a_kind_of(CartItem)
@@ -20,72 +14,55 @@ RSpec.describe Cart, type: :model do
   end
 
   context "#data" do
-    xit "returns a hash with the item id and quantity" do
-      item = Item.create(title: "TRex Spex")
+    it "returns a hash with the item id and quantity" do
       input_data = {}
-      input_data[item.id.to_s] = 2
+      input_data[project.id.to_s] = 2
       cart = Cart.new(input_data)
-      expect(cart.data).to eq(item.id.to_s => 2)
+      expect(cart.data).to eq(project.id.to_s => 2)
     end
   end
 
-  context "#add_item" do
-    xit "updates the data method when item is added to cart" do
-      item = Item.create(title: "TRex Spex")
+  xcontext "#add_item" do
+    it "updates the data method when item is added to cart" do
       cart = Cart.new(nil)
 
-      cart.add_item(item)
-      expect(cart.data).to eq(item.id.to_s => 1)
+      cart.add_project(project)
+      expect(cart.data).to eq(project.id.to_s => 1)
 
-      cart.add_item(item)
-      expect(cart.data).to eq(item.id.to_s => 2)
+      cart.add_project(project)
+      expect(cart.data).to eq(project.id.to_s => 2)
     end
   end
 
-  context "#remove_item" do
-    xit "updates the data method when item is removed from cart" do
-      item = Item.create(title: "TRex Spex")
+  xcontext "#remove_item" do
+    it "updates the data method when item is removed from cart" do
       cart = Cart.new(nil)
 
-      cart.add_item(item)
-      cart.add_item(item)
-      expect(cart.data).to eq(item.id.to_s => 2)
+      cart.add_project(project)
+      cart.add_project(project)
+      expect(cart.data).to eq(project.id.to_s => 2)
 
-      cart.remove_item(item)
+      cart.remove_item(project)
       expect(cart.data).to eq({})
     end
 
-    xit "does not permit zero or negative quantities for cart items" do
-      item = Item.create(title: "TRex Spex")
+    it "does not permit zero or negative quantities for cart items" do
       cart = Cart.new(nil)
 
-      cart.add_item(item)
-      expect(cart.data).to eq(item.id.to_s => 1)
+      cart.add_item(project)
+      expect(cart.data).to eq(project.id.to_s => 1)
 
-      cart.remove_item(item)
+      cart.remove_item(project)
       expect(cart.data).not_to eq("1" => 0)
       expect(cart.data).to eq({})
     end
   end
 
-  context "cart total" do
-    let(:item1) do
-      Item.create(title: "Item 1",
-                  description: "Description 1",
-                  price: 60,
-                  image: "image url")
-    end
+  xcontext "cart total" do
+    let!(:project_2) { Fabricate(:project) }
+    let(:cart) { Cart.new(project.id => 1, project_2.id => 2) }
 
-    let(:item2) do
-      Item.create(title: "Item 2",
-                  description: "Description 2",
-                  price: 40,
-                  image: "image url")
-    end
-
-    let(:cart) { Cart.new(item1.id => 1, item2.id => 2) }
-
-    xit "calculates a cart total" do
+    it "calculates a cart total" do
       expect(cart.total).to eq(140)
     end
   end

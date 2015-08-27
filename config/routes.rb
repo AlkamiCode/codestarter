@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show]
   resources :categories, only: [:show, :index]
 
-  resources :cart_items, only: [:index, :create, :destroy] do
+  resources :cart_items, only: [:index, :create, :update, :destroy] do
     member do
       post :increment, :decrement
     end
@@ -33,9 +33,8 @@ Rails.application.routes.draw do
 
   get "/dashboard", to: "users#show"
   post "/dashboard", to: "addresses#create"
-  get "/cart", to: "cart_projects#index"
+  get "/cart", to: "cart_items#index"
   post "/signup", to: "users#create"
-  get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 end

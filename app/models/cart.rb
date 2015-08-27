@@ -6,32 +6,21 @@ class Cart
   end
 
   def items
-    @data.map do |item_id, quantity|
-      item = Item.find(item_id)
-      CartItem.new(item, quantity)
+    @data.map do |project_id, funding_amount|
+      project = Project.find(project_id)
+      CartItem.new(project, funding_amount)
     end
   end
 
-  def add_item(item)
-    data[item.id.to_s] ||= 0
-    data[item.id.to_s] += 1
+  def update_funding_amount(project_id, funding_amount)
+    data[project_id] = funding_amount.to_i
   end
 
-  def decrease_item(item)
-    if data[item.id.to_s] && data[item.id.to_s] > 1
-      data[item.id.to_s] -= 1
-    else
-      data.except!(item.id.to_s)
-    end
+  def add_project(project)
+    data[project.id.to_s] ? true : data[project.id.to_s] = 0
   end
 
   def remove_item(item)
     data.except!(item.id.to_s)
-  end
-
-  def total
-    items.inject(0) do |subtotal, cart_item|
-      subtotal + (cart_item.final_price * cart_item.quantity)
-    end
   end
 end

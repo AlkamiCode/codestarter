@@ -40,7 +40,7 @@
             </div>
 
             <div class="funding-button">
-                <%= button_to "Fund This Project", "#", class: "btn btn-primary" %>
+                <%= link_to "Fund This Project", cart_items_path(item_id: @project.id), method: :post, class: "btn btn-info", role: "button" %>
             </div>
 
         </div>
