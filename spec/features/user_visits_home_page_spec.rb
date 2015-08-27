@@ -7,7 +7,7 @@ RSpec.feature User, type: :feature do
     within(".navbar") do
       expect(page).to have_link("Sign Up")
       expect(page).to have_link("Log In")
-      expect(page).to have_link("Cart")
+      expect(page).to have_css(".fa-shopping-cart")
       expect(page).to have_link("Contact")
       expect(page).to have_link("About")
     end
