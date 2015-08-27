@@ -4,33 +4,20 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    item = Item.find(params[:item_id])
-    cart.add_item(item)
+    project = Project.find(params[:item_id])
+    cart.add_project(project)
     session[:cart] = cart.data
-    if request.referrer.include?("/items/")
-      redirect_to items_path
-    else
-      redirect_to root_path
-    end
+    redirect_to :back
   end
 
-  def increment
-    item = Item.find(params[:id])
-    cart.add_item(item)
-    session[:cart] = cart.data
-    redirect_to cart_path
-  end
-
-  def decrement
-    item = Item.find(params[:id])
-    cart.decrease_item(item)
-    session[:cart] = cart.data
-    redirect_to cart_path
+  def update
+    cart.update_funding_amount(params[:id], params[:funding_amount])
+    redirect_to :back
   end
 
   def destroy
-    @item = Item.find(params[:id])
-    cart.remove_item(@item)
+    @project = Project.find(params[:id])
+    cart.remove_item(@project)
     session[:cart] = cart.data
     flash[:notice] = render_to_string partial: "flash"
     redirect_to cart_path
