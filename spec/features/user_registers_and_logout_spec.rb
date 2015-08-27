@@ -31,7 +31,7 @@ RSpec.feature "User", type: :feature do
     expect(current_path).to eq(cart_path)
   end
 
-  scenario "after user registers he sees logout link in his nav-bar" do
+  scenario "after user registers user is able to logout" do
     visit projects_path
 
     expect do
@@ -47,5 +47,9 @@ RSpec.feature "User", type: :feature do
     expect(page).to have_link("Logout")
     expect(page).to_not have_link("Login")
     expect(page).to_not have_link("Register")
+
+    click_link("Logout")
+    expect(@current_user).to eq(nil)
+    expect(page).to_not have_link("Logout")
   end
 end
