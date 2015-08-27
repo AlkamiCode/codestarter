@@ -8,7 +8,7 @@ RSpec.feature "Registered user", type: :feature do
     visit root_path
 
     expect do
-      within (".modal-content") do
+      within (".register-modal") do
         fill_in "Username", with: "Lovisa"
         fill_in "Password", with: "rocks"
         fill_in "Password confirmation", with: "rocks"
