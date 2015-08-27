@@ -1,0 +1,17 @@
+<div id="login-modal-small" class="modal fade login-modal-sm" tabindex="-1" role="dialog" aria-labelledby="login-modal-label">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content login-modal">
+      <%= form_for(:session, url: login_path) do |f| %>
+        <h3>Log In</h3><br>
+
+        <%= f.label :username %><br>
+        <%= f.text_field :username %><br>
+
+        <%= f.label :password %><br>
+        <%= f.password_field :password %><br>
+
+        <%= f.submit "Log In", class: "btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>
