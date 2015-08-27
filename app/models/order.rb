@@ -21,7 +21,9 @@ class Order < ActiveRecord::Base
       cart_data.each do |project_id, funding_amount|
         company_id = Project.find(project_id).company_id
         order_items.build(funding_amount: funding_amount,
-          project_id: project_id.to_i, order_id: id, company_id: company_id)
+                          project_id: project_id.to_i,
+                          order_id: id,
+                          company_id: company_id)
       end
     end
   end
