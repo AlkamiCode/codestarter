@@ -20,7 +20,7 @@ class Cart
     data[project.id.to_s] ? true : data[project.id.to_s] = 0
   end
 
-  def remove_item(item)
-    data.except!(item.id.to_s)
+  def remove_project(project)
+    data.except!(project.id.to_s)
   end
 end
