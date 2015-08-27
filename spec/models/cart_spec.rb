@@ -22,48 +22,33 @@ RSpec.describe Cart, type: :model do
     end
   end
 
-  xcontext "#add_item" do
+  context "#add_project" do
     it "updates the data method when item is added to cart" do
       cart = Cart.new(nil)
 
       cart.add_project(project)
-      expect(cart.data).to eq(project.id.to_s => 1)
-
-      cart.add_project(project)
-      expect(cart.data).to eq(project.id.to_s => 2)
+      expect(cart.data).to eq(project.id.to_s => 0)
     end
   end
 
-  xcontext "#remove_item" do
+  context "#remove_project" do
     it "updates the data method when item is removed from cart" do
       cart = Cart.new(nil)
 
       cart.add_project(project)
       cart.add_project(project)
-      expect(cart.data).to eq(project.id.to_s => 2)
+      expect(cart.data).to eq(project.id.to_s => 0)
 
-      cart.remove_item(project)
-      expect(cart.data).to eq({})
-    end
-
-    it "does not permit zero or negative quantities for cart items" do
-      cart = Cart.new(nil)
-
-      cart.add_item(project)
-      expect(cart.data).to eq(project.id.to_s => 1)
-
-      cart.remove_item(project)
-      expect(cart.data).not_to eq("1" => 0)
+      cart.remove_project(project)
       expect(cart.data).to eq({})
     end
   end
 
-  xcontext "cart total" do
-    let!(:project_2) { Fabricate(:project) }
-    let(:cart) { Cart.new(project.id => 1, project_2.id => 2) }
+  context "updates funding amount" do
+    let(:cart) { Cart.new(project.id => 1) }
 
-    it "calculates a cart total" do
-      expect(cart.total).to eq(140)
+    it "updates the funding amount" do
+      expect(cart.update_funding_amount(project.id, 300)).to eq(300)
     end
   end
 end

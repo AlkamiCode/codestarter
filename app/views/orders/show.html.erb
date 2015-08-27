@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Order: <%= @order.id %></h1>
+  <h4>Order Status: <%= @order.status.capitalize %></h4>
+  <h5>Ordered on: <%= @order.created_at.strftime("%m-%d-%Y %I:%M %p") %></h5>
+  <br><br>
+  <% if @order.status == "completed" || @order.status == "cancelled" %>
+  <h5>Your order was <%= @order.status %> on <%= @order.updated_at.strftime("%m-%d-%Y %I:%M %p") %></h5>
+  <% end %>
+  <table id="CartTable">
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= link_to order_item.project.name, project_path(order_item.id) %></td>
+      <td><%= order_item.funding_amount %></td>
+    </tr>
+    <% end %>
+  </table><br><br>
+  <h4>Total: <%= number_to_currency @order.total %></h4>
+</div>
