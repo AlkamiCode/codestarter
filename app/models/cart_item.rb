@@ -1,8 +1,12 @@
 class CartItem < SimpleDelegator
-  attr_reader :quantity
+  attr_accessor :funding_amount
 
-  def initialize(item, quantity = 0)
-    super(item)
-    @quantity = quantity
+  def initialize(project, funding_amount = 0)
+    super(project)
+    @funding_amount = funding_amount
+  end
+
+  def self.funding_amounts
+    [25, 50, 100, 200, 500, 1000, 1500, 2000, 3000]
   end
 end
