@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe "user funds projects in one transaction", type: :feature do
   let!(:project) { Fabricate(:project) }
+  let!(:project_2) { Fabricate(:project) }
   let!(:user) { Fabricate(:user) }
 
   context "a registered user" do
     it "funds a project" do
       login_as(user, root_path)
 
-      visit root_path
       click_link "Projects"
       expect(current_path).to eq projects_path
 
@@ -23,7 +23,22 @@ RSpec.describe "user funds projects in one transaction", type: :feature do
       expect(page).to have_content "$1,500.00"
       click_link "Checkout"
 
+      expect(current_path).to eq orders_path
       expect(page).to have_content "Successfully funded projects!"
+    end
+
+    context "with projects in the cart" do
+      let!(:cart) { Cart.new(project.id => 25, project_2.id => 50) }
+
+      it "funds several projects at once" do
+        login_as(user, root_path)
+        click_link "Cart"
+
+        click_link "Checkout"
+        expect(current_path).to eq orders_path
+
+        expect(page).to have_content "Your Orders"
+      end
     end
   end
 
