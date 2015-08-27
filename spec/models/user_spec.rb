@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
 
   context "with invalid params" do
     it "will not create a user without a password" do
-      user = User.create(username: "Drew")
+      user = User.create(username: "Drewby")
       expect(user).to_not be_valid
     end
 
@@ -33,6 +33,6 @@ RSpec.describe User, type: :model do
   private
 
   def valid_params
-    { username: "Drew", password: "password" }
+    { username: "Drewby", password: "password" }
   end
 end
