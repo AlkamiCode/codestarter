@@ -1,0 +1,20 @@
+<div id="register-modal-small" class="modal fade register-modal-sm" tabindex="-1" role="dialog" aria-labelledby="register-modal-label">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content register-modal">
+      <%= form_for(:user, url: signup_path) do |f| %>
+      <h3>Register</h3><br>
+      
+      <%= f.label :username %><br>
+      <%= f.text_field :username %><br>
+
+      <%= f.label :password %><br>
+      <%= f.text_field :password, type: "password" %><br>
+
+      <%= f.label :password_confirmation %><br>
+      <%= f.text_field :password_confirmation, type: "password" %><br>
+
+      <%= f.submit "Create Account", class: "btn" %>
+    <% end %>
+    </div>
+  </div>
+</div>

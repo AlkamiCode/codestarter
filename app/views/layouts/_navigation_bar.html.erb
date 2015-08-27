@@ -18,21 +18,33 @@
             <%= link_to "Companies", companies_path, class: "page-scroll" %>
           </li>
           <li>
-              <%= link_to "Projects", projects_path, class: "page-scroll" %>
+            <%= link_to "Projects", projects_path, class: "page-scroll" %>
           </li>
+            <% if !current_user %>
+              <li>
+                <a href="#" data-toggle="modal" data-target="#login-modal-small">Log In</a>
+              </li>
+              <li>
+                <a href="#" data-toggle="modal" data-target="#register-modal-small">Sign Up</a>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "Logout", logout_path, method: :delete %>
+              </li>
+            <% end %>
           <li>
-              <%= link_to "Login", login_path, class: "page-scroll" %>
-          </li>
-          <li>
-              <%= link_to "Sign Up", signup_path, class: "page-scroll" %>
+            <a class="page-scroll" href="#about">About</a>
           </li>
           <li>
               <a href="/cart">Cart <span class="badge"><%= cart.items.count %></span></a>
           </li>
           <li>
-              <a class="page-scroll" href="#about">Contact</a>
+            <a class="page-scroll" href="#contact">Contact</a>
           </li>
       </ul>
     </div>
   </div>
 </nav>
+
+<%= render "layouts/register_login_modals" %>
+<%= render "layouts/login_modals" %>

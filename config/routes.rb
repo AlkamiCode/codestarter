@@ -34,8 +34,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "users#show"
   post "/dashboard", to: "addresses#create"
   get "/cart", to: "cart_items#index"
-  get "/signup", to: "users#new"
-  get "/login", to: "sessions#new"
+  post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 end
