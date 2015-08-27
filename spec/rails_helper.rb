@@ -13,4 +13,13 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.infer_spec_type_from_file_location!
+
+  def login_as(user, path)
+    visit path
+    within (".login-modal") do
+      fill_in "Username", with: user.username
+      fill_in "Password", with: user.password
+      click_button "Log In"
+    end
+  end
 end
