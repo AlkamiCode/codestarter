@@ -3,12 +3,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      if @user.role == 0
-        flash[:success] = "Welcome, #{@user.username}!"
-        redirect_to :back
-      else
-        redirect_to :back
-      end
+      flash[:success] = "Welcome, #{@user.username}!"
+      redirect_to :back
     else
       flash[:danger] = "Need Username and Password"
       redirect_to :back
@@ -24,5 +20,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :password)
   end
-
 end
