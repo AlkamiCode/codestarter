@@ -8,15 +8,20 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.build
-    @order.cart_data = session[:cart] if session[:cart]
-    if @order.save
-      flash[:message] = "Order was successfully placed"
-      session[:cart] = nil
-      redirect_to orders_path
+    if current_user
+      @order = current_user.orders.build
+      @order.cart_data = session[:cart] if session[:cart]
+      if @order.save
+        flash[:success] = "Successfully funded projects!"
+        session[:cart] = nil
+        redirect_to orders_path
+      else
+        flash[:danger] = "Your order could not be placed. Please contact support."
+        redirect_to "/cart"
+      end
     else
-      flash[:error] = "Your order could not be placed. Please contact support."
-      redirect_to root_path
+      flash[:danger] = "You need to log in to check out"
+      redirect_to :back
     end
   end
 end
