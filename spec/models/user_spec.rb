@@ -6,10 +6,6 @@ RSpec.describe User, type: :model do
     it "creates a user with valid params" do
       expect(user).to be_valid
     end
-
-    it "has a default role" do
-      expect(user.role).to eq("default")
-    end
   end
 
   context "with invalid params" do
