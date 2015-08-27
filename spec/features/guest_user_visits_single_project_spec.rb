@@ -16,7 +16,7 @@ RSpec.describe "guest can visit single projects", type: :feature do
       within(".header") do
         expect(page).to have_content "CodeStarter"
         expect(page).to have_link "Sign Up"
-        expect(page).to have_link "Login"
+        expect(page).to have_link "Log In"
       end
 
       within ".project-details" do

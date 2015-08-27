@@ -14,7 +14,7 @@
   </div>
 
   <% flash.each do |type, msg| %>
-    <%= content_tag :div, msg.html_safe, class: "flash_#{type}" %>
+    <%= content_tag :div, msg.html_safe, class: "alert alert-#{type}" %>
   <% end %>
 
   <%= yield %>
