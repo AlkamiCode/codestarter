@@ -27,12 +27,16 @@
               <li>
                 <a href="#" data-toggle="modal" data-target="#register-modal-small">Sign Up</a>
               </li>
+            <% else %>
+              <li>
+                <%= link_to "Logout", logout_path %>
+              </li>
             <% end %>
           <li>
-            <a class="page-scroll" href="#contact">About</a>
+            <a class="page-scroll" href="#about">About</a>
           </li>
           <li>
-            <a class="page-scroll" href="#about">Contact</a>
+            <a class="page-scroll" href="#contact">Contact</a>
           </li>
       </ul>
     </div>
