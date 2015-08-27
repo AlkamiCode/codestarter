@@ -12,6 +12,8 @@ RSpec.feature "User", type: :feature do
         click_button "Create Account"
       end
     end.to change { User.count }.from(0).to(1)
+
+    expect(current_path).to eq(root_path)
   end
 
   it "can register successfully from cart page" do
@@ -25,5 +27,7 @@ RSpec.feature "User", type: :feature do
         click_button "Create Account"
       end
     end.to change { User.count }.from(0).to(1)
+
+    expect(current_path).to eq(cart_path)
   end
 end
