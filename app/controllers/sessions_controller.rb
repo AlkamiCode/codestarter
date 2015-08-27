@@ -6,11 +6,12 @@ class SessionsController < ApplicationController
       if @user.role == "admin"
         redirect_to admin_dashboard_path
       else
+        flash[:success] = "Welcome back, #{@user.username}!"
         redirect_to :back
       end
     else
-      flash.now[:error] = "Invalid username or password"
-      render :back
+      flash[:danger] = "Invalid username or password"
+      redirect_to :back
     end
   end
 

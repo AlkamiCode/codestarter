@@ -4,13 +4,14 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       if @user.role == 0
+        flash[:success] = "Welcome, #{@user.username}!"
         redirect_to :back
       else
         redirect_to :back
       end
     else
-      flash[:error] = "Need Username and Password"
-      render :back
+      flash[:danger] = "Need Username and Password"
+      redirect_to :back
     end
   end
 
