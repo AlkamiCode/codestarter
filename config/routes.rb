@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "homepage#index"
 
   resources :companies, only: [:index]
-  
+
   namespace :companies, path: ':company', as: :company do
     resources :projects, only: [:index, :show]
     resources :orders, only: [:index, :show, :create]
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   get "/dashboard", to: "users#show"
   post "/dashboard", to: "addresses#create"
-  get "/cart", to: "cart_projects#index"
+  get "/cart", to: "cart_items#index"
   get "/signup", to: "users#new"
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
