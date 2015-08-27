@@ -14,33 +14,41 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-          <li>
-            <%= link_to "Companies", companies_path, class: "page-scroll" %>
-          </li>
-          <li>
-            <%= link_to "Projects", projects_path, class: "page-scroll" %>
-          </li>
-            <% if !current_user %>
-              <li>
-                <a href="#" data-toggle="modal" data-target="#login-modal-small">Log In</a>
-              </li>
-              <li>
-                <a href="#" data-toggle="modal" data-target="#register-modal-small">Sign Up</a>
-              </li>
-            <% else %>
-              <li>
-                <%= link_to "Logout", logout_path, method: :delete %>
-              </li>
-            <% end %>
-          <li>
-            <a class="page-scroll" href="#about">About</a>
-          </li>
-          <li>
-              <a href="/cart">Cart <span class="badge"><%= cart.items.count %></span></a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#contact">Contact</a>
-          </li>
+        <li>
+          <%= link_to "Companies", companies_path, class: "page-scroll" %>
+        </li>
+        <li>
+          <%= link_to "Projects", projects_path, class: "page-scroll" %>
+        </li>
+          <% if !current_user %>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#login-modal-small">Log In</a>
+            </li>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#register-modal-small">Sign Up</a>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Logout", logout_path, method: :delete %>
+            </li>
+            <li>
+              <a href="#" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Account<span class="caret"></span></a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Update Info</a></li>
+                <li><a href="#">Funded Projects</a></li>
+              </ul>
+            </li>
+          <% end %>
+        <li>
+          <a class="page-scroll" href="#about">About</a>
+        </li>
+        <li>
+            <a href="/cart">Cart <span class="badge"><%= cart.items.count %></span></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#contact">Contact</a>
+        </li>
       </ul>
     </div>
   </div>
