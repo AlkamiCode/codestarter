@@ -20,8 +20,9 @@ RSpec.describe "user adds projects to cart", type: :feature do
         expect(page).to have_content "1"
       end
 
-      click_link "Cart"
-      expect(current_path).to eq "/cart"
+      expect(page).to have_css(".fa-shopping-cart")
+      page.find("a[href='/cart']").click
+      expect(current_path).to eq cart_path
       expect(page).to have_content "Sample Project"
     end
 
@@ -29,8 +30,8 @@ RSpec.describe "user adds projects to cart", type: :feature do
       visit root_path
       click_link "Projects"
       first(:link, "Fund This Project").click
-      click_link "Cart"
-      expect(current_path).to eq "/cart"
+      page.find("a[href='/cart']").click
+      expect(current_path).to eq cart_path
     end
 
     it "can be redirected to view the individual project" do
