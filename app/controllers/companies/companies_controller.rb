@@ -2,7 +2,7 @@ class Companies::CompaniesController < ApplicationController
   before_action :company_not_found?
 
   helper_method :current_company
-  
+
   def current_company
     @current_company ||= Company.find_by(url: params[:company])
   end

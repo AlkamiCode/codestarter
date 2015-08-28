@@ -13,7 +13,7 @@
           </a>
       </div>
       <div class="col-md-7">
-          <h2><%= cart_item.company.name %></h2>
+          <h2><%#= cart_item.company.name %></h2>
           <h3><%= cart_item.name %></h3>
           <p><%= cart_item.description %></p>
 
@@ -37,8 +37,8 @@
 </div>
 <div class="checkout-button">
   <% if current_user %>
-    <%= link_to "Checkout", orders_path, method: :post, class: "btn btn-primary checkout" %>
+    <%= link_to "Checkout", user_orders_path(current_user.id), method: :post, class: "btn btn-primary checkout" %>
   <% else %>
-    <a href="#" data-toggle="modal" data-target="#login-modal-small">Log in to check out</a>
+    <a href="#" data-toggle="modal" data-target="#login-modal-small" class="btn btn-primary checkout">Log in to check out</a>
   <% end %>
 </div>
