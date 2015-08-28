@@ -16,11 +16,11 @@ RSpec.describe "registered user", type: :feature do
     expect(User.last.username).to eq("Marla")
 
     within (".update-modal") do
-      fill_in "Username", with: "Marlaz"
+      fill_in "Username", with: "Marlazz"
       fill_in "Password", with: "rockies"
       fill_in "Password confirmation", with: "rockies"
       click_button "Update Info"
     end
-    expect(User.last.username).to eq("Marlaz")
+    expect(User.last.username).to eq("Marlazz")
   end
 end
