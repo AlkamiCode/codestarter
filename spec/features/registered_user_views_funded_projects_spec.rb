@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "registered user", type: :feature do
+  let!(:company) { Fabricate(:company) }
   let!(:project) { Fabricate(:project) }
   let!(:project_2) { Fabricate(:project) }
   let!(:user) { Fabricate(:user) }
@@ -23,6 +24,5 @@ RSpec.describe "registered user", type: :feature do
     click_link "Checkout"
 
     expect(current_path).to eq orders_path
-
   end
 end
