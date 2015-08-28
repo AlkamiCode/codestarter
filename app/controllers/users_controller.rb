@@ -16,7 +16,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
+    user = User.find(current_user.id)
+    user.update(user_params)
+
+    if user.save
+      flash[:success] = "user info updated!"
+      redirect_to :back
+    else
+      flash[:danger] = "Unable to update user"
+      redirect_to :back
+    end
   end
 
   private

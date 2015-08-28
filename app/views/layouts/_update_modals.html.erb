@@ -1,7 +1,7 @@
 <div id="update-modal-small" class="modal fade update-modal-sm" tabindex="-1" role="dialog" aria-labelledby="update-modal-label">
   <div class="modal-dialog modal-sm">
     <div class="modal-content update-modal">
-      <%= form_for(:user, url: user_update_path) do |f| %>
+      <%= form_for(:user, url: update_path, method: :put) do |f| %>
       <h3>Update</h3><br>
 
       <%= f.label :new_username %><br>
