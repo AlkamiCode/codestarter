@@ -21,7 +21,7 @@ RSpec.describe "PermissionService", type: :model do
         let(:controller) { "companies" }
 
         context "looking at companies#index" do
-          let (:action) { "index" }
+          let(:action) { "index" }
 
           it "allows access" do
             expect(allowed).to be true
@@ -29,7 +29,7 @@ RSpec.describe "PermissionService", type: :model do
         end
 
         context "looking at companies#show" do
-          let (:action) { "show" }
+          let(:action) { "show" }
 
           it "allows access" do
             expect(allowed).to be true
@@ -37,7 +37,7 @@ RSpec.describe "PermissionService", type: :model do
         end
 
         context "looking at companies#index" do
-          let (:action) { "index" }
+          let(:action) { "index" }
 
           it "allows access" do
             expect(allowed).to be true
@@ -49,7 +49,7 @@ RSpec.describe "PermissionService", type: :model do
         let(:controller) { "sessions" }
 
         context "looking at sessions#new" do
-          let (:action) { "new" }
+          let(:action) { "new" }
 
           it "allows access" do
             expect(allowed).to be true
@@ -57,7 +57,7 @@ RSpec.describe "PermissionService", type: :model do
         end
 
         context "looking at sessions#create" do
-          let (:action) { "create" }
+          let(:action) { "create" }
 
           it "allows access" do
             expect(allowed).to be true
@@ -65,7 +65,7 @@ RSpec.describe "PermissionService", type: :model do
         end
 
         context "looking at sessions#destroy" do
-          let (:action) { "destroy" }
+          let(:action) { "destroy" }
 
           it "allows access" do
             expect(allowed).to be true

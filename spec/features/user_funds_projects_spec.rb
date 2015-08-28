@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "user funds projects in one transaction", type: :feature do
   let!(:project) { Fabricate(:project) }
   let!(:project_2) { Fabricate(:project) }
-  let!(:user) { Fabricate(:user) }
+  let!(:user) { Fabricate(:user, roles: %w(registered_user)) }
 
   context "a registered user" do
     it "funds a project" do
