@@ -15,6 +15,19 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
   end
 
+  def update
+    user = User.find(current_user.id)
+    user.update(user_params)
+
+    if user.save
+      flash[:success] = "user info updated!"
+      redirect_to :back
+    else
+      flash[:danger] = "Unable to update user"
+      redirect_to :back
+    end
+  end
+
   private
 
   def user_params

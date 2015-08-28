@@ -1,0 +1,20 @@
+<div id="update-modal-small" class="modal fade update-modal-sm" tabindex="-1" role="dialog" aria-labelledby="update-modal-label">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content update-modal">
+      <%= form_for(:user, url: update_path, method: :put) do |f| %>
+      <h3>Update</h3><br>
+
+      <%= f.label :new_username %><br>
+      <%= f.text_field :username %><br>
+
+      <%= f.label :new_password %><br>
+      <%= f.text_field :password, type: "password" %><br>
+
+      <%= f.label :password_confirmation %><br>
+      <%= f.text_field :password_confirmation, type: "password" %><br>
+
+      <%= f.submit "Update Info", class: "btn" %>
+    <% end %>
+    </div>
+  </div>
+</div>

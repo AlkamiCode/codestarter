@@ -18,6 +18,7 @@ gem "coveralls", require: false
 gem 'faker'
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem "traceroute"
 
 group :development, :test do
   gem 'fabrication'
