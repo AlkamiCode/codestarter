@@ -21,11 +21,19 @@ class PermissionService
   private
 
   def guest_user_permissions
+    return true if controller == "companies" && action.in?(%w(index show))
+    return true if controller == "sessions" && action.in?(%w(new create))
   end
-  
+
   def registered_user_permissions
     return true if controller == "companies" && action.in?(%w(index show))
     return true if controller == "sessions" && action.in?(%w(new create destroy))
   end
 
+  def company_admin_permissions
+    return true if controller == "companies" && action.in?(%w(index show))
+    return true if controller == "sessions" && action.in?(%w(new create destroy))
+    return true if controller == "projects" && action.in?(%w(index show))
+    return true if controller == "orders" && action.in?(%w(index show))
+  end
 end
