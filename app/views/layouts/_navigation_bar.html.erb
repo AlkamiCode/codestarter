@@ -40,15 +40,15 @@
               </ul>
             </li>
           <% end %>
-        <li>
-          <a class="page-scroll" href="#about">About</a>
-        </li>
-        <li>
-            <a href="/cart">Cart <span class="badge"><%= cart.items.count %></span></a>
-        </li>
-        <li>
-          <a class="page-scroll" href="#contact">Contact</a>
-        </li>
+            <li>
+              <a class="page-scroll" href="#about">About</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#contact">Contact</a>
+            </li>
+            <li>
+              <a href="/cart"><%= fa_icon "shopping-cart 2x"%><span class="badge"><%= cart.items.count %></span></a>
+            </li>
       </ul>
     </div>
   </div>

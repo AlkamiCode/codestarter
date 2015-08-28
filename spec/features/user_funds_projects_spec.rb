@@ -13,7 +13,7 @@ RSpec.describe "user funds projects in one transaction", type: :feature do
       expect(current_path).to eq projects_path
 
       first(:link, "Fund This Project").click
-      click_link "Cart"
+      page.find("a[href='/cart']").click
 
       within(".cart-options") do
         select 1500, from: "funding_amount"
@@ -32,7 +32,7 @@ RSpec.describe "user funds projects in one transaction", type: :feature do
 
       it "funds several projects at once" do
         login_as(user, root_path)
-        click_link "Cart"
+        page.find("a[href='/cart']").click
 
         click_link "Checkout"
         expect(current_path).to eq orders_path
@@ -46,7 +46,7 @@ RSpec.describe "user funds projects in one transaction", type: :feature do
     it "has to log in to check out" do
       visit projects_path
       first(:link, "Fund This Project").click
-      click_link "Cart"
+      page.find("a[href='/cart']").click
 
       click_link "Log in to check out"
       login_as(user, "/cart")
