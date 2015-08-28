@@ -1,89 +1,60 @@
-<body>
-    <div class="container">
-
-    <!-- Project Heading -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header"><%= @project.name %>
-                <small><%= link_to "Sample Company", "#" %></small>
-            </h1>
-        </div>
+<div class="container">
+  <!-- Project Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"><%= @project.name %>
+        <small><%= link_to "Sample Company", "#" %></small>
+      </h1>
     </div>
-    <!-- /.row -->
+  </div>
 
-    <!-- Portfolio Item Row -->
-    <div class="row project-details">
-
-        <div class="col-md-8">
-            <img class="img-responsive" src="<%= @project.image %>" alt="">
-        </div>
-
-        <div class="col-md-4">
-            <div class="project-description">
-                <p><%= @project.description %></p>
-            </div>
-
-            <div class="funding-stats">
-                <h1><%= number_to_currency @project.current_funding %></h1>
-                <p>pledged of <strong><%= number_to_currency @project.funding_goal %></strong> goal</p>
-
-                <div class="progress">
-                  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= @project.funding_in_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.funding_in_percentage %>%">
-                    <span class="sr-only"><%= @project.funding_in_percentage %>% Complete (success)</span>
-                  </div>
-                </div>
-            </div>
-
-            <div class="funding-stats">
-                <h1><%= distance_of_time_in_words Time.now, @project.end_date %></h1>
-                <p>to go until funding ends at <%= @project.pretty_end_date %></p>
-            </div>
-
-            <div class="funding-button">
-                <%= link_to "Fund This Project", cart_items_path(item_id: @project.id), method: :post, class: "btn btn-primary", role: "button" %>
-            </div>
-
-        </div>
-
+  <!-- Portfolio Item Row -->
+  <div class="row project-details">
+    <div class="col-md-8">
+      <img class="img-responsive" src="<%= @project.image %>" alt="">
     </div>
-    <!-- /.row -->
 
-    <!-- Related Projects Row -->
-    <div class="row related-projects">
+    <div class="col-md-4">
+      <div class="project-description">
+        <p><%= @project.description %></p>
+      </div>
 
-        <div class="col-lg-12">
-            <h3 class="page-header">Related Projects</h3>
-        </div>
-        <div class="related-projects">
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <h4><%= @project.random_projects[0].name %></h4>
-                    <%= image_tag(@project.random_projects[0].image, class: 'img-responsive portfolio-item') %>
-                </a>
-            </div>
 
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <h4><%= @project.random_projects[1].name %></h4>
-                    <%= image_tag(@project.random_projects[1].image, class: 'img-responsive portfolio-item') %>
-                </a>
-            </div>
+    <div class="funding-stats">
+      <h1><%= number_to_currency @project.current_funding %></h1>
+      <p>pledged of <strong><%= number_to_currency @project.funding_goal %></strong> goal</p>
 
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <h4><%= @project.random_projects[2].name %></h4>
-                    <%= image_tag(@project.random_projects[2].image, class: 'img-responsive portfolio-item') %>
-                </a>
-            </div>
 
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <h4><%= @project.random_projects[3].name %></h4>
-                    <%= image_tag(@project.random_projects[3].image, class: 'img-responsive portfolio-item') %>
-                </a>
-            </div>
-        </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= @project.funding_in_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.funding_in_percentage %>%">
+        <span class="sr-only"><%= @project.funding_in_percentage %>% Complete (success)</span>
+      </div>
     </div>
-</body>
+  </div>
 
+  <div class="funding-stats">
+    <h1><%= distance_of_time_in_words Time.now, @project.end_date %></h1>
+    <p>to go until funding ends at <%= @project.pretty_end_date %></p>
+  </div>
+
+  <div class="funding-button">
+    <%= link_to "Fund This Project", cart_items_path(item_id: @project.id), method: :post, class: "btn btn-primary", role: "button" %>
+  </div>
+</div>
+
+</div>
+  <div class="row related-projects">
+    <div class="col-lg-12">
+    <h3 class="page-header">Related Projects</h3>
+  </div>
+  <% @related_projects.each do |project| %>
+    <div class="related-projects">
+      <div class="col-sm-3 col-xs-6">
+      <a href="#">
+      <h4><%= project.name %></h4>
+      <%= image_tag(project.image, class: 'img-responsive portfolio-item') %>
+      </a>
+    </div>
+  <% end %>
+</div>
 <hr>
