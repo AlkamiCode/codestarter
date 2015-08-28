@@ -6,20 +6,21 @@ RSpec.describe "registered user", type: :feature do
 
     expect do
       within (".register-modal") do
-        fill_in "Username", with: "Lovisa"
+        fill_in "Username", with: "Marla"
         fill_in "Password", with: "rocks"
         fill_in "Password confirmation", with: "rocks"
         click_button "Create Account"
       end
     end.to change { User.count }.from(0).to(1)
 
-    
+    expect(User.last.username).to eq("Marla")
+
+    within (".update-modal") do
+      fill_in "Username", with: "Marlaz"
+      fill_in "Password", with: "rockies"
+      fill_in "Password confirmation", with: "rockies"
+      click_button "Update Info"
+    end
+    expect(User.last.username).to eq("Marlaz")
   end
 end
-
-# As a registered user,
-# and I click the link "Account" in the navbar,
-# I am redirected to my account page,
-# and I can edit my account details,
-# and when I click the button
-# "update", my new details are saved.
