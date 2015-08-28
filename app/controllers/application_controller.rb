@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  protected
-
   helper_method :cart
   helper_method :current_user
   helper_method :current_admin?
@@ -12,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(url: params[:user]) if params[:user]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def current_admin?

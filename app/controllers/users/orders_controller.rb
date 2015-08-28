@@ -14,7 +14,7 @@ class Users::OrdersController < Users::UsersController
       if @order.save
         flash[:success] = "Successfully funded projects!"
         session[:cart] = nil
-        redirect_to orders_path
+        redirect_to user_orders_path(user: current_user.url)
       else
         flash[:danger] = "Your order could not be placed. Please contact support."
         redirect_to "/cart"
