@@ -3,23 +3,22 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  helper_method :cart
+  helper_method :current_user
+  helper_method :current_admin?
+
   def cart
     @cart ||= Cart.new(session[:cart])
   end
 
-  helper_method :cart
-
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(url: params[:user]) if params[:user]
   end
-
-  helper_method :current_user
 
   def current_admin?
     current_user && current_user.admin?
   end
 
-  helper_method :current_admin?
 
   def render_not_found
     render "/public/404", status: 404

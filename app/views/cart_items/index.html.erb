@@ -37,7 +37,7 @@
 </div>
 <div class="checkout-button">
   <% if current_user %>
-    <%= link_to "Checkout", user_orders_path(current_user.id), method: :post, class: "btn btn-primary checkout" %>
+    <%= link_to "Checkout", user_orders_path(user: current_user.url), method: :post, class: "btn btn-primary checkout" %>
   <% else %>
     <a href="#" data-toggle="modal" data-target="#login-modal-small" class="btn btn-primary checkout">Log in to check out</a>
   <% end %>

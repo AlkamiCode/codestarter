@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index]
 
-  namespace :user do
+  namespace :users, path: ":user", as: :user do
     resources :orders, only: [:create, :index, :show]
   end
 

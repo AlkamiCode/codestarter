@@ -4,8 +4,15 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, length: { in: 5..12 }
   validates :password, presence: true, length: { in: 5..12 }, confirmation: true
   has_one :address
+  validates :url, presence: true, uniqueness: true
 
   enum role: %w(default admin)
+
+  before_validation :generate_url
+
+  def generate_url
+    self.url = username.parameterize
+  end
 
   def to_param
     "dashboard"

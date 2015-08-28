@@ -1,4 +1,4 @@
-class User::BaseController < ApplicationController
+class Users::UsersController < ApplicationController
   before_action :require_authenticated_user
 
   def require_authenticated_user

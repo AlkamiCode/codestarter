@@ -36,7 +36,7 @@
 
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="#" data-toggle="modal" data-target="#update-modal-small">Update Info</a></li>
-                <li><a href="/user/orders">Funded Projects</a></li>
+                <li><%= link_to "Funded Projects", user_orders_path(user: current_user.url) %></li>
               </ul>
             </li>
           <% end %>
