@@ -6,7 +6,7 @@ RSpec.describe "user adds projects to cart", type: :feature do
     let!(:project_2) { Fabricate(:project) }
     let!(:project_3) { Fabricate(:project) }
     let!(:project_4) { Fabricate(:project) }
-    # let!(:company) { Fabricate(:company) }
+    let!(:company) { Fabricate(:company) }
 
     it "adds items to cart" do
       visit root_path

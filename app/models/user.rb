@@ -10,5 +10,4 @@ class User < ActiveRecord::Base
   def to_param
     "dashboard"
   end
-
 end
