@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates :username, presence: true, uniqueness: true, length: { in: 5..12 }
-  validates :password, presence: true, length: { in: 5..12 }, confirmation: true
+  validates :username, presence: true, uniqueness: true, length: { in: 2..25 }
+  validates :password, presence: true, length: { in: 5..25 }, confirmation: true
   has_one :address
 
   def company_admin?
@@ -19,5 +19,9 @@ class User < ActiveRecord::Base
 
   def to_param
     "dashboard"
+  end
+
+  def company
+    Company.find(company_id) if company_id
   end
 end
