@@ -48,7 +48,8 @@ RSpec.describe User, type: :model do
 
   context "a business admin" do
     let!(:company) { Fabricate(:company) }
-    let!(:user) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }
+    let!(:user) { Fabricate(:user, company_id: company.id,
+      roles: %w(company_admin)) }
 
     it "has an associated company" do
       expect(user.company.name).to eq "Sample Company"

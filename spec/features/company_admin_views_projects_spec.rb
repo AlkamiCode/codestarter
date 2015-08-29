@@ -3,8 +3,10 @@ require "rails_helper"
 RSpec.describe "company admin views projects" do
   let!(:company) { Fabricate(:company) }
   let!(:project) { Fabricate(:project, company_id: company.id) }
-  let!(:user) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }
-  let!(:registered_user) { Fabricate(:user, username: "reggie", roles: %w(registered_user)) }
+  let!(:user) { Fabricate(:user, company_id: company.id,
+    roles: %w(company_admin)) }
+  let!(:registered_user) { Fabricate(:user, username: "reggie",
+    roles: %w(registered_user)) }
 
   context "a company admin" do
     it "views all projects" do
