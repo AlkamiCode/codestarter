@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Registered user can log in", type: :feature do
   context "as an already registered user" do
-    let!(:user) { Fabricate(:user) }
+    let!(:user) { Fabricate(:user, roles: %w(registered_user)) }
 
     it "can log in via the navbar" do
       visit root_path

@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
+
     if @user.save
+      @user.roles << Role.find_or_create_by(name: 'registered_user')
       session[:user_id] = @user.id
       flash[:success] = "Welcome, #{@user.username}!"
       redirect_to :back

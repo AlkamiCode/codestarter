@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "registered user", type: :feature do
+RSpec.describe "registered user can view funded projects", type: :feature do
   let!(:company) { Fabricate(:company) }
   let!(:project) { Fabricate(:project) }
   let!(:project_2) { Fabricate(:project) }
   let!(:project_3) { Fabricate(:project) }
-  let!(:user) { Fabricate(:user) }
+  let!(:user) { Fabricate(:user, roles: %w(registered_user)) }
 
   scenario "views her funded projects" do
     login_as(user, root_path)

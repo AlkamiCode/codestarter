@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827202811) do
+ActiveRecord::Schema.define(version: 20150827211958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(version: 20150827202811) do
 
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sales", force: :cascade do |t|
     t.string   "name"
     t.integer  "discount"
@@ -86,16 +92,27 @@ ActiveRecord::Schema.define(version: 20150827202811) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
+  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "role",            default: 0
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_foreign_key "addresses", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "projects", "companies"
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end
