@@ -37,6 +37,9 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="#" data-toggle="modal" data-target="#update-modal-small">Update Info</a></li>
                 <li><%= link_to "Funded Projects", orders_path %></li>
+                <% if current_user.company_admin? %>
+                  <li><%= link_to "#{current_user.company.name}'s Projects", company_projects_path(company: current_user.company.url) %></li>
+                <% end %>
               </ul>
             </li>
           <% end %>
