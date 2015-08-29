@@ -4,6 +4,7 @@ RSpec.describe "registered user", type: :feature do
   let!(:company) { Fabricate(:company) }
   let!(:project) { Fabricate(:project) }
   let!(:project_2) { Fabricate(:project) }
+  let!(:project_3) { Fabricate(:project) }
   let!(:user) { Fabricate(:user) }
 
   scenario "views her funded projects" do
