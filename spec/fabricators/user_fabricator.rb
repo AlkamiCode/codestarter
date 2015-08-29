@@ -2,6 +2,7 @@ Fabricator(:user) do
   username "marla"
   password "password"
   password_confirmation "password"
+  company_id ""
   transient :roles
 
   after_build do |user, transients|
