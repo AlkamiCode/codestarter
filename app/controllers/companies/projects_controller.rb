@@ -2,7 +2,9 @@ class Companies::ProjectsController < Companies::CompaniesController
   before_action :find_company, only: [:index, :show]
 
   def index
-    @projects        = current_company.projects
+    @projects = current_company.projects.sort_by do |project|
+      project.funding_in_percentage
+    end
     @active_projects = Company.count_active_projects(@projects)
     render :index
   end
