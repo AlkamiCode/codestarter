@@ -26,7 +26,7 @@
 
 
     <div class="progress">
-      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= @project.funding_in_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.funding_in_percentage %>%">
+      <div class="progress-bar progress-bar-success progress-bar-striped <%= 'active' if @project.funding_in_percentage < 100 %>" role="progressbar" aria-valuenow="<%= @project.funding_in_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.funding_in_percentage %>%">
         <span class="sr-only"><%= @project.funding_in_percentage %>% Complete (success)</span>
       </div>
     </div>
