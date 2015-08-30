@@ -17,6 +17,11 @@
               <p><span class="percentage-of-goal"><%= project.funding_in_percentage %>%</span> funded</p>
               <p>Current Funding: <strong class="funding"><%= number_to_currency project.current_funding %></strong></p>
               <%= link_to "View Project", project_path(project), class: "btn btn-primary", role: "button" %>
+
+              <% if current_user && current_user.company_admin? && current_user.company.name == current_company.name  %>
+                <%= link_to "Edit", "#", class: "btn btn-info", role: "button" %>
+                <%= link_to "Delete", "#", class: "btn btn-info", role: "button" %>
+              <% end %>
             </div>
           </div>
         </div>
