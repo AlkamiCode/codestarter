@@ -1,5 +1,6 @@
 class Companies::ProjectsController < Companies::CompaniesController
   before_action :find_company
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @sorted_projects = current_company.sorted_projects
@@ -41,6 +42,10 @@ class Companies::ProjectsController < Companies::CompaniesController
 
   def find_company
     @company = Company.where(url: params[:company]).first!
+  end
+
+  def find_project
+    @project = @company.projects.find(params[:id])
   end
 
   def project_params
