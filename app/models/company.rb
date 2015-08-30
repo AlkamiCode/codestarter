@@ -12,7 +12,9 @@ class Company < ActiveRecord::Base
     self.url = name.parameterize
   end
 
-  def self.count_active_projects(projects)
-    projects.find_all { |project| project.funding_in_percentage < 100 }.count
+  def sorted_projects
+    self.projects.sort_by do |project|
+      project.funding_in_percentage
+    end
   end
 end

@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
       if @order.save
         # binding.pry
         @order.projects.each do |project|
-          project.funded if project.current_funding >= project.funding_goal
+          project.funded! if project.current_funding >= project.funding_goal
         end
         flash[:success] = "Successfully funded projects!"
         session[:cart] = nil
