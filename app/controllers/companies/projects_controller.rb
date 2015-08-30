@@ -12,12 +12,17 @@ class Companies::ProjectsController < Companies::CompaniesController
   end
 
   def new
-    @project = Project.new(params[:company])
+    if current_company == current_user.company
+      @project = Project.new
+    else
+      flash[:danger] = "You are not authorized to view this page."
+      redirect_to root_path
+    end
   end
 
   def create
     @project = Project.new(project_params)
-    if save
+    if @project.save
       redirect_to company_project_path(company: current_company.url, id: @project.id)
     else
       flash[:danger] = "There was a problem creating your project."
