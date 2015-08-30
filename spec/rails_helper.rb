@@ -16,6 +16,8 @@ RSpec.configure do |config|
 
   def login_as(user, path)
     visit path
+    click_button "Log In"
+
     within (".login-modal") do
       fill_in "Username", with: user.username
       fill_in "Password", with: user.password
