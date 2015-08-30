@@ -1,6 +1,6 @@
 class Companies::ProjectsController < Companies::CompaniesController
   before_action :find_company
-  before_action :find_project, only: [:show, :edit, :update, :destroy]
+  before_action :find_project, only: [:show, :update, :destroy]
 
   def index
     @sorted_projects = current_company.sorted_projects
@@ -32,6 +32,12 @@ class Companies::ProjectsController < Companies::CompaniesController
   end
 
   def edit
+    if current_company == current_user.company
+      @project = @company.projects.find(params[:id])
+    else
+      flash[:danger] = "You are not authorized to view this page."
+      redirect_to root_path
+    end
   end
 
   def update

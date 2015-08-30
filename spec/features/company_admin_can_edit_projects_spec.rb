@@ -25,4 +25,17 @@ RSpec.describe "company admin can edit projects", type: :feature do
       expect(page).not_to have_content "To make the sample world a better place."
     end
   end
+
+  context "as another company admin" do
+    let!(:company2) { Fabricate(:company, name: "company2") }
+    let!(:project2) { Fabricate(:project, name: "project2", company_id: company2.id) }
+    let!(:user2) { Fabricate(:user, username: "user2", company_id: company2.id, roles: %w(company_admin)) }
+
+    it "can't edit projects for another company" do
+      login_as(user2, root_path)
+      visit "/#{company.url}/projects/#{company.projects.first.id}/edit"
+      expect(current_path).to eq root_path
+      expect(page).to have_content "You are not authorized to view this page."
+    end
+  end
 end
