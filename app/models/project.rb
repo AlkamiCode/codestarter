@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
     state :active, :initial => true
     state :funded
 
-    event :fuded do
+    event :funded do
       transitions from: :active, to: :funded
     end
   end

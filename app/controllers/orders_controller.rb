@@ -12,6 +12,10 @@ class OrdersController < ApplicationController
       @order = current_user.orders.build
       @order.cart_data = session[:cart] if session[:cart]
       if @order.save
+        # binding.pry
+        @order.projects.each do |project|
+          project.funded if project.current_funding >= project.funding_goal
+        end
         flash[:success] = "Successfully funded projects!"
         session[:cart] = nil
         redirect_to orders_path

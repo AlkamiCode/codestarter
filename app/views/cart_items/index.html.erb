@@ -18,7 +18,7 @@
           <p><%= cart_item.description %></p>
 
           <div class="cart-options">
-              <h2 class="pull-left"><%= number_to_currency cart_item.funding_amount %></h2>
+              <h1 class="pull-left"><%= number_to_currency cart_item.funding_amount %></h1>
 
               <%= form_tag cart_item_path(cart_item), method: :put do %>
                 <div class="form-group dropdown-toggle">
@@ -33,13 +33,13 @@
           </div>
       </div>
 <hr>
-<% end %>
   </div>
 </div>
 <div class="checkout-button">
   <% if current_user %>
-    <%= link_to "Checkout", orders_path(current_user.id), method: :post, class: "btn btn-primary checkout" %>
+    <%= link_to "Checkout", orders_path(current_user.id), method: :post, class: "btn btn-primary checkout", params: {funding_amount: cart_item.funding_amount} %>
   <% else %>
     <a href="#" data-toggle="modal" data-target="#login-modal-small" class="btn btn-primary checkout">Log in to check out</a>
   <% end %>
 </div>
+<% end %>
