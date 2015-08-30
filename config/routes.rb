@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :index, :show]
 
   namespace :companies, path: ':company', as: :company do
-    resources :projects, only: [:index, :show, :new, :create]
+    resources :projects
     resources :orders, only: [:index, :show, :create]
     resources :users, only: [:show, :index]
   end

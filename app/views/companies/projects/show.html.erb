@@ -12,7 +12,7 @@
       <img class="img-responsive" src="<%= @project.image %>" alt="">
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6-stats">
       <div class="project-description">
         <p><%= @project.description %></p>
       </div>
@@ -28,11 +28,11 @@
         <span class="sr-only"><%= @project.funding_in_percentage %>% Complete (success)</span>
       </div>
     </div>
-  </div>
 
-  <div class="funding-stats">
-    <h1><%= distance_of_time_in_words Time.now, @project.end_date %></h1>
-    <p>to go until funding ends at <%= @project.pretty_end_date %></p>
+    <div class="funding-stats">
+      <h1><%= distance_of_time_in_words Time.now, @project.end_date %></h1>
+      <p>to go until funding ends at <%= @project.pretty_end_date %></p>
+    </div>
   </div>
 
   <div class="funding-button">

@@ -1,5 +1,5 @@
 class Companies::ProjectsController < Companies::CompaniesController
-  before_action :find_company, only: [:index, :show]
+  before_action :find_company
 
   def index
     @projects = current_company.projects.sort_by do |project|
@@ -15,25 +15,34 @@ class Companies::ProjectsController < Companies::CompaniesController
   end
 
   def new
-    current_company_admin?
-    @project = Project.new
+    if current_company == current_user.company
+      @project = Project.new
+    else
+      flash[:danger] = "You are not authorized to view this page."
+      redirect_to root_path
+    end
   end
 
   def create
-    @project = Project.create(project_params)
-    redirect_to company_project_path(company: current_company.url, id: @project.id)
+    @project = Project.new(project_params)
+    if @project.save
+      redirect_to company_project_path(company: current_company.url, id: @project.id)
+    else
+      flash[:danger] = "There was a problem creating your project."
+      render :new
+    end
+  end
+
+  def destroy
+    @project = @company.projects.find(params[:id])
+    @project.delete
+    redirect_to company_projects_path(company: current_company.url)
   end
 
   private
 
   def find_company
-    @company = Company.find_by(url: params[:company])
-  end
-
-  def current_company_admin?
-    unless current_user.company == current_company
-      redirect_to root_url, danger: "You are not authorized to access this page."
-    end
+    @company = Company.where(url: params[:company]).first!
   end
 
   def project_params
