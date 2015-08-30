@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :cart
   helper_method :current_user
-  helper_method :current_admin?
 
   add_flash_types :success, :info, :warning, :danger
 
@@ -15,10 +14,6 @@ class ApplicationController < ActionController::Base
 
   def current_permission
     @current_permission ||= PermissionService.new(current_user)
-  end
-
-  def current_admin?
-    current_user && current_user.admin?
   end
 
   def authorize!
