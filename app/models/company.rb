@@ -13,8 +13,6 @@ class Company < ActiveRecord::Base
   end
 
   def sorted_projects
-    self.projects.sort_by do |project|
-      project.funding_in_percentage
-    end
+    projects.sort_by(&:funding_in_percentage)
   end
 end
