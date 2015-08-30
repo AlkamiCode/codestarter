@@ -11,6 +11,7 @@ class Companies::ProjectsController < Companies::CompaniesController
 
   def show
     @project = @company.projects.find(params[:id])
+    @related_projects = Project.all.sample(4)
   end
 
   def new
