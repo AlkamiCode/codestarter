@@ -11,4 +11,8 @@ class Company < ActiveRecord::Base
   def generate_url
     self.url = name.parameterize
   end
+
+  def sorted_projects
+    projects.sort_by(&:funding_in_percentage)
+  end
 end

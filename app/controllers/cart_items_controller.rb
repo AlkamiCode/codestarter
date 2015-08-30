@@ -17,9 +17,9 @@ class CartItemsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    cart.remove_item(@project)
+    cart.remove_project(@project)
     session[:cart] = cart.data
-    flash[:notice] = render_to_string partial: "flash"
+    flash[:success] = render_to_string partial: "flash"
     redirect_to cart_path
   end
 end
