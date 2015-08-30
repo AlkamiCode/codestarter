@@ -55,7 +55,10 @@ RSpec.describe "company admin creates a project" do
     let!(:company) { Fabricate(:company) }
     let!(:company_2) { Fabricate(:company, name: "Different Company") }
 
-    let!(:user) { Fabricate(:user,
+    let!(:admin) { Fabricate(:user,
+                            company_id: company.id,
+                            roles: %w(company_admin)) }
+    let!(:admin2) { Fabricate(:user, username: "admin2",
                             company_id: company_2.id,
                             roles: %w(company_admin)) }
 
@@ -66,7 +69,7 @@ RSpec.describe "company admin creates a project" do
     let!(:project_4) { Fabricate(:project) }
 
     it "can create a project for a their company" do
-      login_as(user, root_path)
+      login_as(admin2, root_path)
 
       click_link "Account"
       click_link "Create Project"
@@ -87,11 +90,11 @@ RSpec.describe "company admin creates a project" do
     end
 
     it "cannot create a project for a different company" do
-      login_as(user, root_path)
+      login_as(admin, root_path)
 
-      visit "/#{company.url}/projects/new"
-      expect(page).to have_content "You are not authorized to access this page."
+      visit "/#{company_2.url}/projects/new"
       expect(current_path).to eq root_path
+      expect(page).to have_content "You are not authorized to view this page."
     end
   end
 end
