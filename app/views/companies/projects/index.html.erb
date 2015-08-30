@@ -20,7 +20,7 @@
 
               <% if current_user && current_user.company_admin? && current_user.company.name == current_company.name  %>
                 <%= link_to "Edit", "#", class: "btn btn-info", role: "button" %>
-                <%= link_to "Delete", "#", class: "btn btn-info", role: "button" %>
+                <%= link_to "Delete", company_project_path(company: current_company.url, id: project.id), class: "btn btn-info", role: "button", method: :delete %>
               <% end %>
             </div>
           </div>
