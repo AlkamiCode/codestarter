@@ -9,7 +9,6 @@ class Companies::ProjectsController < Companies::CompaniesController
   end
 
   def show
-    @project = @company.projects.find(params[:id])
     @related_projects = Project.all.sample(4)
   end
 
@@ -32,8 +31,16 @@ class Companies::ProjectsController < Companies::CompaniesController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @project.update(project_params)
+    flash[:notice] = "#{@project.name} successfully updated!"
+    redirect_to company_project_path(company: current_company.url, id: @project.id)
+  end
+
   def destroy
-    @project = @company.projects.find(params[:id])
     @project.delete
     redirect_to company_projects_path(company: current_company.url)
   end
