@@ -7,9 +7,7 @@ Rails.application.routes.draw do
   namespace :companies, path: ':company', as: :company do
     resources :projects, only: [:index, :show, :new, :create]
     resources :orders, only: [:index, :show, :create]
-    resources :users, except: [:show] do
-      resources :addresses, only: [:new, :create, :show]
-    end
+    resources :users, only: [:show, :index]
   end
 
   resources :projects, only: [:index, :show]
