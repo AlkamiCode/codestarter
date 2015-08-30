@@ -10,4 +10,8 @@ class Company < ActiveRecord::Base
   def generate_url
     self.url = name.parameterize
   end
+
+  def self.count_active_projects(projects)
+    projects.find_all { |project| project.funding_in_percentage < 100 }.count
+  end
 end
