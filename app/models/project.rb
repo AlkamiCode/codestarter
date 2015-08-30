@@ -8,6 +8,19 @@ class Project < ActiveRecord::Base
             :name,
             :image, presence: true
 
+  include AASM
+
+  enum status: %w(active funded)
+
+  aasm :column => :status, :enum => true do
+    state :active, :initial => true
+    state :funded
+
+    event :fuded do
+      transitions from: :active, to: :funded
+    end
+  end
+
   def funding_in_percentage
     if current_funding > funding_goal
       100
