@@ -44,6 +44,22 @@ RSpec.describe User, type: :model do
       user.password = "b" * 26
       expect(user).to_not be_valid
     end
+
+    it "is invalid without an email" do
+      user.email = nil
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid if the email is invalid" do
+      user.email = "#$!!??gmail....com"
+      expect(user).to_not be_valid
+
+      user.email = "$%#&&#^^hello@gmailc.om"
+      expect(user).to_not be_valid
+
+      user.email = "$%#&&#^^hello#))((^^%$helloe@gmailc.om"
+      expect(user).to_not be_valid
+    end
   end
 
   context "a business admin" do
