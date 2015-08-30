@@ -22,12 +22,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authorize!
-    unless current_permission.allow?(params[:controller], params[:action])
-      redirect_to root_url, danger: "You are not authorized to access this page."
-    end
-  end
-
   def cart
     @cart ||= Cart.new(session[:cart])
   end

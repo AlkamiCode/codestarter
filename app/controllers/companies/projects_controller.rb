@@ -11,7 +11,7 @@ class Companies::ProjectsController < Companies::CompaniesController
   end
 
   def new
-    is_company_admin?
+    current_company_admin?
     @project = Project.new
   end
 
@@ -26,15 +26,19 @@ class Companies::ProjectsController < Companies::CompaniesController
     @company = Company.find_by(url: params[:company])
   end
 
-  def is_company_admin?
+  def current_company_admin?
     unless current_user.company == current_company
       redirect_to root_url, danger: "You are not authorized to access this page."
     end
   end
 
   def project_params
-    prms = params.require(:project).permit(:name, :description, :funding_goal, :image)
-    prms[:company_id], prms[:current_funding], prms[:end_date] = current_company.id, 0, formatted_date
+    prms = params.require(:project).permit(:name,
+                                           :description,
+                                           :funding_goal,
+                                           :image)
+    prms[:company_id], prms[:current_funding], prms[:end_date] =
+      current_company.id, 0, formatted_date
     prms
   end
 

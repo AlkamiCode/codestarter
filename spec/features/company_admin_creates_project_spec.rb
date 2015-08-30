@@ -4,7 +4,8 @@ RSpec.describe "company admin creates a project" do
   context "a company admin" do
     let!(:company) { Fabricate(:company) }
 
-    let!(:user) { Fabricate(:user, company_id: company.id,  roles: %w(company_admin)) }
+    let!(:user) { Fabricate(:user, company_id: company.id,
+      roles: %w(company_admin)) }
 
     let!(:project) { Fabricate.build(:project) }
     let!(:project_1) { Fabricate(:project) }
@@ -29,7 +30,8 @@ RSpec.describe "company admin creates a project" do
         click_button "Create"
       end
 
-      expect(current_path).to eq company_project_path(company: company.url, id: Project.last.id)
+      expect(current_path).to eq company_project_path(company: company.url,
+                                                      id: Project.last.id)
     end
   end
 
@@ -53,7 +55,8 @@ RSpec.describe "company admin creates a project" do
     let!(:company) { Fabricate(:company) }
     let!(:company_2) { Fabricate(:company, name: "Different Company") }
 
-    let!(:user) { Fabricate(:user, company_id: company_2.id,  roles: %w(company_admin)) }
+    let!(:user) { Fabricate(:user, company_id: company_2.id,
+      roles: %w(company_admin)) }
 
     let!(:project) { Fabricate.build(:project) }
     let!(:project_1) { Fabricate(:project) }
@@ -78,7 +81,8 @@ RSpec.describe "company admin creates a project" do
         click_button "Create"
       end
 
-      expect(current_path).to eq company_project_path(company: company_2.url, id: Project.last.id)
+      expect(current_path).to eq company_project_path(company: company_2.url,
+                                                      id: Project.last.id)
     end
 
     it "cannot create a project for a different company" do
