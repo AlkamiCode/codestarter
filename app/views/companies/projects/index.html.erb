@@ -16,6 +16,7 @@
               </div>
               <p><span class="percentage-of-goal"><%= project.funding_in_percentage %>%</span> funded</p>
               <p>Current Funding: <strong class="funding"><%= number_to_currency project.current_funding %></strong></p>
+              <p>Funding Goal: <strong class="funding"><%= number_to_currency project.funding_goal %></strong></p>
               <%= link_to "View Project", project_path(project), class: "btn btn-primary", role: "button" %>
 
               <% if current_user && current_user.company_admin? && current_user.company.name == current_company.name  %>
