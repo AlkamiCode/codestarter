@@ -10,6 +10,12 @@ class Companies::ProjectsController < Companies::CompaniesController
     @project = company.projects.find[params[:id]]
   end
 
+  def new
+  end
+
+  def create
+  end
+
   private
 
   def find_company
