@@ -7,6 +7,6 @@ class CartItem < SimpleDelegator
   end
 
   def self.funding_amounts
-    [25, 50, 100, 200, 500, 1000, 1500, 2000, 3000]
+    [100, 200, 500, 1000, 1500, 2000, 2500, 3000]
   end
 end

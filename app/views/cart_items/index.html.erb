@@ -20,15 +20,16 @@
           <div class="cart-options">
               <h2 class="pull-left"><%= number_to_currency cart_item.funding_amount %></h2>
 
-               <%= form_tag cart_item_path(cart_item), method: :put do %>
-                  <div class="form-group dropdown-toggle">
-                      <%= select_tag :funding_amount, options_for_select((CartItem.funding_amounts), cart_item.funding_amount) %>
-                      <%= button_tag "Set Amount", type: "submit", class: "btn btn-primary" %>
-                  </div>
+              <%= form_tag cart_item_path(cart_item), method: :put do %>
+                <div class="form-group dropdown-toggle">
+                  <%= number_field_tag 'funding_amount', nil, max: (cart_item.funding_goal - cart_item.current_funding) %>
+                  <%= button_tag "Set Amount", type: "submit", class: "btn btn-primary" %>
               <% end %>
-
-              <%= link_to "View Project", project_path(cart_item), class: "btn btn-primary" %>
-              <%= link_to "Remove", cart_item_path(cart_item), method: :delete, class: "btn btn-primary" %>
+                  <%= link_to "Remove", cart_item_path(cart_item), method: :delete, class: "btn btn-primary" %>
+                  <%= link_to "View Project", project_path(cart_item), class: "btn btn-primary" %>
+                </div>
+                <p>Funding Goal: <strong class="funding"><%= number_to_currency cart_item.funding_goal %></strong></p>
+                <p>Current Funding: <strong class="funding"><%= number_to_currency cart_item.current_funding %></strong></p>
           </div>
       </div>
 <hr>

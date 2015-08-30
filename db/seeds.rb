@@ -14,7 +14,7 @@ class Seed
         company_id: rand(1..20),
         current_funding: rand(1..10000),
         funding_goal: rand(1..2000),
-        end_date: Faker::Date.forward(30)
+        end_date: Faker::Date.forward(30),
         )
       puts "Project #{i}: #{project.name} successfully created!"
     end
