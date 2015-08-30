@@ -20,7 +20,7 @@ RSpec.describe "guest can visit single projects", type: :feature do
       end
 
       within ".project-details" do
-        within ".col-md-4" do
+        within ".col-md-6-stats" do
           expect(page).to have_content "$200.00"
           expect(page).to have_content "pledged of $500.00 goal"
         end

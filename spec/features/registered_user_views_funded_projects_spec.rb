@@ -17,11 +17,11 @@ RSpec.describe "registered user can view funded projects", type: :feature do
     page.find("a[href='/cart']").click
 
     within(".cart-options") do
-      select 1500, from: "funding_amount"
+      fill_in 'funding_amount', with: "50"
       click_button "Set Amount"
     end
 
-    expect(page).to have_content "$1,500.00"
+    expect(page).to have_content "$50.00"
     click_link "Checkout"
 
     expect(current_path).to eq orders_path
