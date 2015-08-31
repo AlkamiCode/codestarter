@@ -42,7 +42,7 @@ class Companies::ProjectsController < Companies::CompaniesController
 
   def update
     @project.update(project_params)
-    flash[:notice] = "#{@project.name} successfully updated!"
+    flash[:success] = "#{@project.name} successfully updated!"
     redirect_to company_project_path(company: current_company.url, id: @project.id)
   end
 
