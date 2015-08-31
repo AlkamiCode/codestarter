@@ -20,7 +20,7 @@
               <%= link_to "View Project", company_project_path(company: project.company.url, id: project.id), class: "btn btn-primary", role: "button" %>
 
               <% if current_user && current_user.company_admin? && current_user.company.name == current_company.name  %>
-                <%= link_to "Edit", "#", class: "btn btn-info", role: "button" %>
+                <%= link_to "Edit", edit_company_project_path(company: current_company.url, id: project.id), class: "btn btn-info", role: "button" %>
                 <%= link_to "Delete", company_project_path(company: current_company.url, id: project.id), class: "btn btn-info", role: "button", method: :delete %>
               <% end %>
             </div>
