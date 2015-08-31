@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "homepage#index"
 
   resources :companies, only: [:index]
-  resources :orders, only: [:create, :index, :show]
+  resources :orders, only: [:create, :index]
 
   namespace :companies, path: ':company', as: :company do
     resources :projects
