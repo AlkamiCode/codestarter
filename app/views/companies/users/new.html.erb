@@ -19,12 +19,36 @@
         </ul>
       </div>
 
-      <div class="col-md-6 new-user-form">
+      <div class="col-md-4 new-user-form">
         <h2 id="content-header">Find User</h2>
 
-      </div>
+        <%= form_tag(search_company_user_path(company: current_company.url, id: 1), method: 'get') do %>
+          <div class="form-group dropdown-toggle">
+            <%= search_field_tag 'searchfield' %>
+            <%= button_tag("Search", method: "get", class: "btn btn-primary") %>
+        <% end %>
 
-      <div class="col-md-3">
+        <% if @user %>
+          <div class ="search-result">
+           <div class="table-responsive">
+              <table class="table table-striped orders">
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th></th>
+                </tr>
+
+                  <tr>
+                    <td><%= @user.username %></td>
+                    <td><%= @user.email %></td>
+                    <td></td>
+                  </tr>
+              </table>
+            </div>
+          </div>
+        <% end %>
+
+      <div class="col-md-5  collaborators">
         <h2 id="content-header">Collaborators</h2>
         <div class="table-responsive">
           <table class="table table-striped orders">
