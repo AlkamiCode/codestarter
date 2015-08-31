@@ -13,7 +13,10 @@
 
       <div class="col-md-9 collaborators">
         <h2 id="content-header">Collaborators</h2>
-        <h4 id="sec0"><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h4>
+        <% if current_user.company_admin? %>
+          <h4><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h4>
+        <% end %>
+
         <div class="table-responsive">
           <table class="table table-striped orders">
 
