@@ -1,19 +1,24 @@
-<div class="container" id="OrdersPage">
+<div class="container">
 
-  <h1>Your Orders</h1>
+</div>
+
+
+</div>
+
+<div id="accordion">
   <% if @orders.size > 0 %>
-  <table id="orders">
-    <th>Time Placed</th>
-    <th>Amount</th>
-    <th></th>
     <% @orders.each do |order| %>
-    <tr>
-      <td><%= order.created_at.strftime("%m-%d-%Y %I:%M %p") %></td>
-      <td><%= number_to_currency order.total %></td>
-      <td><%= link_to "View Order", order_path(order.id) %></td>
-      <% end %>
-    </tr>
-  </table>
+        <h3><%= order.created_at.strftime("%m-%d-%Y %I:%M %p") %>
+          <%= number_to_currency order.total %>
+        </h3>
+        <div>
+          <p>
+          Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+          ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+          amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+          odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+          </p>
+        </div>
+    <% end %>
   <% end %>
-
 </div>

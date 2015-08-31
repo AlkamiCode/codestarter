@@ -14,4 +14,9 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-ui/accordion
 //= require_tree .
+
+$(function() {
+  $( "#accordion" ).accordion();
+});

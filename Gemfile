@@ -21,6 +21,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem "traceroute"
 gem 'color_routes'
 gem 'aasm'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'fabrication'
