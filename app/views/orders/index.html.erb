@@ -1,28 +1,34 @@
 <div id="accordion">
   <% if @orders.size > 0 %>
     <% @orders.each do |order| %>
-        <h3><%= order.created_at.strftime("%m-%d-%Y %I:%M %p") %>
-          <%= number_to_currency order.total %>
-        </h3>
+        <h4><%= order.created_at.strftime("%m-%d-%Y %I:%M %p") %></h4>
         <div>
           <p>
-            <h1>Order: <%= order.id %></h1>
-              <h4>Order Status: <%= order.status.capitalize %></h4>
-              <h5>Ordered on: <%= order.created_at.strftime("%m-%d-%Y %I:%M %p") %></h5>
+            <h4>Order ID: <%= order.id %></h4>
+              <h4>Funding Status: <%= order.status.capitalize %></h4>
+              <h4>Funded On: <%= order.created_at.strftime("%m-%d-%Y %I:%M %p") %></h4>
               <br><br>
               <% if order.status == "completed" || order.status == "cancelled" %>
-                <h5>Your order was <%= order.status %> on <%= order.updated_at.strftime("%m-%d-%Y %I:%M %p") %></h5>
+                <h5>Your Funding Was <%= order.status %> on <%= order.updated_at.strftime("%m-%d-%Y %I:%M %p") %></h5>
               <% end %>
-              <table id="CartTable">
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
+
+              <table class="table">
+                <th>Project Category</th>
+                <th>Company</th>
+                <th>Project Name</th>
+                <th>Amount Funded</th>
                 <% order.order_items.each do |order_item| %>
                 <tr>
+                  <td>Category</td>
+                  <td><%= order_item.project.company.name %></td>
                   <td><%= link_to order_item.project.name, project_path(order_item.id) %></td>
-                  <td><%= order_item.funding_amount %></td>
+                  <td><%= number_to_currency order_item.funding_amount %></td>
                 </tr>
                 <% end %>
+                <tr>
+                  <td colspan="3"></td>
+                  <td><%= number_to_currency order.total %></td>
+                </tr>
               </table>
           </p>
         </div>
