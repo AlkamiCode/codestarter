@@ -25,8 +25,14 @@ RSpec.describe "company admin creates collaborators" do
 
       within(".new-user-form") do
         expect(page).to have_content "Find User"
-        fill_in "search-field", with: "collaborator"
-        click_link "Select"
+        fill_in "searchfield", with: "collaborator"
+        click_button "Search"
+      end
+
+      within(".search-result") do
+        expect(page).to have_content user.username
+        expect(page).to have_content user.email
+        click_button "Select"
       end
 
       within(".collaborators") do
@@ -34,14 +40,16 @@ RSpec.describe "company admin creates collaborators" do
         expect(page).to have_content "collaborator@email.com"
       end
 
+      within("#sidebar") do
+        click_link "Collaborators"
+      end
+
       expect(current_path).to eq company_users_path(company: company.url)
 
-      within(".body") do
-        within(".collab-info") do
-          expect(page).to have_content "#{user.name}"
-          expect(page).to have_link "Edit"
-          expect(page).to have_link "Delete"
-        end
+      within(".collaborators") do
+        expect(page).to have_content user.username
+        expect(page).to have_content user.email
+        expect(page).to have_link "Remove"
       end
     end
   end
