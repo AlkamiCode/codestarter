@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "company admin creates collaborators" do
+RSpec.describe "company admin registers collaborators" do
   context "a company admin" do
     let!(:company) { Fabricate(:company) }
     let!(:admin) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }
@@ -51,6 +51,29 @@ RSpec.describe "company admin creates collaborators" do
         expect(page).to have_content user.email
         expect(page).to have_link "Remove"
       end
+    end
+
+    it "can not register a collaborator twice" do
+      login_as(admin, root_path)
+
+      click_link "Account"
+      click_link "Collaborators"
+      click_link "Add Collaborator"
+
+      within(".new-user-form") do
+        expect(page).to have_content "Find User"
+        fill_in "searchfield", with: "collaborator"
+        click_button "Search"
+      end
+      click_button "Select"
+
+      within(".collaborators") do
+        expect(page).to have_content "collaborator"
+        expect(page).to have_content "collaborator@email.com"
+      end
+
+      click_button "Select"
+      expect(page).to have_content "#{user.username.capitalize} already is a registered collaborator."
     end
   end
 end
