@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   namespace :companies, path: ':company', as: :company do
     resources :projects
     resources :orders, only: [:index, :show, :create]
-    resources :users, only: [:show, :index]
+    resources :users, only: [:show, :index, :new, :create] do
+      member do
+        get :search
+      end
+    end
   end
 
   resources :projects, only: [:index, :show]

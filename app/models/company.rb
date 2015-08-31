@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+  attr_reader :collaborators
   has_many :projects
   has_many :users
 
@@ -10,6 +11,10 @@ class Company < ActiveRecord::Base
 
   def generate_url
     self.url = name.parameterize
+  end
+
+  def collaborators
+    User.where(company_id: id)
   end
 
   def sorted_projects

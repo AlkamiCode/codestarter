@@ -55,7 +55,11 @@ RSpec.describe "company admin creates a project" do
     let!(:company_2) { Fabricate(:company, name: "Different Company") }
 
     let!(:admin) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }
-    let!(:admin2) { Fabricate(:user, username: "admin2", company_id: company_2.id, roles: %w(company_admin)) }
+    let!(:admin2) { Fabricate(:user,
+                              username: "admin2",
+                              company_id: company_2.id,
+                              roles: %w(company_admin),
+                              email: "admin2@email.com") }
 
     let!(:project) { Fabricate.build(:project) }
     let!(:project_1) { Fabricate(:project) }

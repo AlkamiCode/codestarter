@@ -2,6 +2,7 @@ Fabricator(:user) do
   username "marla"
   password "password"
   password_confirmation "password"
+  email "user@email.com"
   company_id ""
   transient :roles
 

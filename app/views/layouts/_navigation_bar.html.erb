@@ -24,7 +24,7 @@
             <li>
               <a href="#" data-toggle="modal" data-target="#login-modal-small">Log In</a>
             </li>
-            <li>
+            <li id="register-modal">
               <a href="#" data-toggle="modal" data-target="#register-modal-small">Sign Up</a>
             </li>
           <% else %>
@@ -41,6 +41,7 @@
                 <% if current_user && current_user.company_admin?  %>
                   <li><%= link_to "#{current_user.company.name}'s Projects", company_projects_path(company: current_user.company.url) %></li>
                   <li><%= link_to "Create Project", new_company_project_path(company: current_user.company.url) %></li>
+                  <li><%= link_to "Collaborators", company_users_path(company: current_user.company.url) %></li>
                 <% end %>
               </ul>
             </li>

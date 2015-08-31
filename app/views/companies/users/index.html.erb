@@ -1,0 +1,41 @@
+<div class="container">
+  <!-- Project Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"><%= current_company.name %>
+        <small>Registered Collaborators</small>
+      </h1>
+    </div>
+  </div>
+
+    <div class="row">
+      <%= render 'sidebar' %>
+
+      <div class="col-md-9 collaborators">
+        <h2 id="content-header">Collaborators</h2>
+        <h4 id="sec0"><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h4>
+        <div class="table-responsive">
+          <table class="table table-striped orders">
+
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+
+          <% if current_company.collaborators %>
+            <% current_company.collaborators.each do |collaborator| %>
+              <tr>
+                <td><%= collaborator.username %></td>
+                <td><%= collaborator.email %></td>
+                <td><%= link_to "Remove", "#" %></td>
+              </tr>
+            <% end %>
+          <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div><!--/container-->
+
+<hr>
