@@ -79,7 +79,7 @@ RSpec.describe "company admin registers collaborators" do
 
       click_button "Select"
       expect(page).to have_content
-        "#{user.username.capitalize} is already a registered collaborator."
+      "#{user.username.capitalize} is already a registered collaborator."
     end
   end
 end
