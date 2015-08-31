@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.feature "User can log out", type: :feature do
   scenario "can register successfully from home page" do
     visit root_path
-    click_link "Sign Up"
+
+    within("#register-modal") do
+      click_link "Sign Up"
+    end
 
     expect do
       within (".register-modal") do
