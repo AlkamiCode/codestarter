@@ -23,15 +23,15 @@
               <th></th>
             </tr>
 
-          <% if current_company.collaborators %>
-            <% current_company.collaborators.each do |collaborator| %>
-              <tr>
-                <td><%= collaborator.username %></td>
-                <td><%= collaborator.email %></td>
-                <td><%= link_to "Remove", "#" %></td>
-              </tr>
+            <% if current_company.collaborators %>
+              <% current_company.collaborators.each do |collaborator| %>
+                <%= content_tag_for :tr, collaborator do %>
+                  <td><%= collaborator.username %></td>
+                  <td><%= collaborator.email %></td>
+                  <td id="remove"><%= link_to "Remove", company_user_path(company: current_company.url, id: collaborator.id), method: :put %></td>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
           </table>
         </div>
       </div>
