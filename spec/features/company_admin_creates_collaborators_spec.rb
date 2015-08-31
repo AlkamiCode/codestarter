@@ -3,8 +3,13 @@ require "rails_helper"
 RSpec.describe "company admin registers collaborators" do
   context "a company admin" do
     let!(:company) { Fabricate(:company) }
-    let!(:admin) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }
-    let!(:user) { Fabricate(:user, username: "collaborator", roles: %w(registered_user), email: "collaborator@email.com") }
+    let!(:admin) { Fabricate(:user,
+                             company_id: company.id,
+                             roles: %w(company_admin)) }
+    let!(:user) { Fabricate(:user,
+                            username: "collaborator",
+                            roles: %w(registered_user),
+                            email: "collaborator@email.com") }
 
     it "creates a collaborator" do
       login_as(admin, root_path)
@@ -73,7 +78,8 @@ RSpec.describe "company admin registers collaborators" do
       end
 
       click_button "Select"
-      expect(page).to have_content "#{user.username.capitalize} already is a registered collaborator."
+      expect(page).to have_content
+        "#{user.username.capitalize} already is a registered collaborator."
     end
   end
 end
