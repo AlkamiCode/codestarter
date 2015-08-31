@@ -2,7 +2,8 @@ class Companies::ProjectsController < Companies::CompaniesController
   before_action :find_company
 
   def index
-    @projects = current_company.projects
+    @sorted_projects = current_company.sorted_projects
+    @active_projects = current_company.projects.where(status: 0).count
     render :index
   end
 

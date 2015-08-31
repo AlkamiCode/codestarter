@@ -16,4 +16,8 @@ class Company < ActiveRecord::Base
   def collaborators
     User.where(company_id: id)
   end
+
+  def sorted_projects
+    projects.sort_by(&:funding_in_percentage)
+  end
 end
