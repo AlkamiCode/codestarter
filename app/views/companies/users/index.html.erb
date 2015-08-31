@@ -9,37 +9,32 @@
   </div>
 
     <div class="row">
-      <div class="col-md-3" id="leftCol">
-        <ul class="nav nav-stacked" id="sidebar">
-          <li><a href="#">All Projects</a></li>
-          <li><a href="#">New Project</a></li>
-          <li><a href="#">Active Projects</a></li>
-          <li><a href="#">Funded Projects</a></li>
-          <li><a href="#">Collaborators</a></li>
-        </ul>
-      </div>
+      <%= render 'sidebar' %>
 
       <div class="col-md-9">
-        <h2 id="content-header">Collaborators</h2>
+        <h2 id="content-header collaborators">Collaborators</h2>
         <h4 id="sec0"><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h4>
-        <div class="table-responsive">
-          <table class="table table-striped orders">
+        <% if @collaborators %>
+          <% @collaborators.each do |collaborator| %>
+            <div class="table-responsive">
+              <table class="table table-striped orders">
 
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th></th>
-              <th></th>
-            </tr>
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th></th>
+                  <th></th>
+                </tr>
 
-              <tr>
-                <td>Lovisa</td>
-                <td>Lovisasvallingson@gmail.com</td>
-                <td>Edit<%#= link_to "Edit", edit_company_user_path(company: current_company.url, id: user.id) %></td>
-                <td>Delete<%#= link_to "Delete", edit_company_user_path(company: current_company.url, id: user.id) %></td>
-              </tr>
-          </table>
-        </div>
+                  <tr>
+                    <td><%= collaborator.username %></td>
+                    <td><%= collaborator.email %></td>
+                    <td><%= link_to "Remove", "#" %></td>
+                  </tr>
+              </table>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div><!--/container-->
