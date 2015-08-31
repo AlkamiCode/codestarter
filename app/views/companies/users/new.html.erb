@@ -39,28 +39,29 @@
             </div>
           </div>
         <% end %>
+
       <div class="col-md-5 collaborators">
         <h2 id="content-header">Collaborators</h2>
-        <% if @collaborators %>
-          <% @collaborators.each do |collaborator| %>
-            <div class="table-responsive">
-              <table class="table table-striped orders">
+        <div class="table-responsive">
+          <table class="table table-striped orders">
 
-                <tr>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th></th>
-                </tr>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
 
-                  <tr>
-                    <td><%= collaborator.username %></td>
-                    <td><%= collaborator.email %></td>
-                    <td><%= link_to "Delete", "#" %></td>
-                  </tr>
-              </table>
-            </div>
+          <% if current_company.collaborators %>
+            <% current_company.collaborators.each do |collaborator| %>
+              <tr>
+                <td><%= collaborator.username %></td>
+                <td><%= collaborator.email %></td>
+                <td><%= link_to "Delete", "#" %></td>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
+          </table>
+        </div>
       </div>
     </div>
   </div><!--/container-->
