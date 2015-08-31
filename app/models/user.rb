@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     roles.exists?(name: 'registered_user')
   end
 
+  def collaborator?
+    roles.exists?(name: 'collaborator')
+  end
+
   def to_param
     "dashboard"
   end

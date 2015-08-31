@@ -10,6 +10,8 @@ class PermissionService
     @action     = action
     if user.company_admin?
       company_admin_permissions
+    elsif user.collaborator?
+      collaborator_permissions
     elsif user.registered_user?
       registered_user_permissions
     else
@@ -45,7 +47,19 @@ class PermissionService
     return true if controller == "projects" && action.in?(%w(index show))
     return true if controller == "companies" && action.in?(%w(index show))
     return true if controller == "companies/projects" && action.in?(%w(index show new create edit update destroy))
-    return true if controller == "companies/users" && action.in?(%w(index new create search))
+    return true if controller == "companies/users" && action.in?(%w(index new create update search))
+    return true if controller == "sessions" && action.in?(%w(new create destroy))
+    return true if controller == "users" && action.in?(%w(show update))
+    return true if controller == "cart_items" && action.in?(%w(index create update destroy))
+    return true if controller == "orders" && action.in?(%w(index show create))
+  end
+
+  def collaborator_permissions
+    return true if controller == "homepage" && action == "index"
+    return true if controller == "projects" && action.in?(%w(index show))
+    return true if controller == "companies" && action.in?(%w(index show))
+    return true if controller == "companies/projects" && action.in?(%w(index show new create edit update destroy))
+    return true if controller == "companies/users" && action.in?(%w(index))
     return true if controller == "sessions" && action.in?(%w(new create destroy))
     return true if controller == "users" && action.in?(%w(show update))
     return true if controller == "cart_items" && action.in?(%w(index create update destroy))

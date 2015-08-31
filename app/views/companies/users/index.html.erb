@@ -13,7 +13,10 @@
 
       <div class="col-md-9 collaborators">
         <h2 id="content-header">Collaborators</h2>
-        <h4 id="sec0"><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h4>
+        <% if current_user.company_admin? %>
+          <h4><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h4>
+        <% end %>
+
         <div class="table-responsive">
           <table class="table table-striped orders">
 
@@ -23,15 +26,15 @@
               <th></th>
             </tr>
 
-          <% if current_company.collaborators %>
-            <% current_company.collaborators.each do |collaborator| %>
-              <tr>
-                <td><%= collaborator.username %></td>
-                <td><%= collaborator.email %></td>
-                <td><%= link_to "Remove", "#" %></td>
-              </tr>
+            <% if current_company.collaborators %>
+              <% current_company.collaborators.each do |collaborator| %>
+                <%= content_tag_for :tr, collaborator do %>
+                  <td><%= collaborator.username %></td>
+                  <td><%= collaborator.email %></td>
+                  <td id="remove"><%= link_to "Remove", company_user_path(company: current_company.url, id: collaborator.id), method: :put %></td>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
           </table>
         </div>
       </div>
