@@ -9,61 +9,56 @@
   </div>
 
     <div class="row">
-      <%= render 'sidebar' %>
+    <%= render 'sidebar' %>
 
       <div class="col-md-4 new-user-form">
         <h2 id="content-header">Find User</h2>
-
-        <%= form_tag(search_company_user_path(company: current_company.url, id: 1), method: 'get') do %>
+        <h4 id="sec0"><%= link_to "All Collaborators", company_users_path(company: current_user.company.url) %></h4>
+        <%= form_tag(search_company_user_path(company: current_company.url, id: 1), method: 'get') do %><br>
           <div class="form-group dropdown-toggle">
             <%= search_field_tag 'searchfield' %>
-            <%= button_tag("Search", method: "get", class: "btn btn-primary") %>
+            <%= button_tag("Search", method: "get", class: "btn btn-primary") %><br>
+          </div>
         <% end %>
 
         <% if @user %>
           <div class ="search-result">
            <div class="table-responsive">
-              <table class="table table-striped orders">
+              <table class="table">
                 <tr>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th></th>
+                  <td><%= @user.username %></td>
+                  <td><%= @user.email %></td>
+                  <td><%= button_to "Select", company_users_path(company: current_company.url, user: @user.username), method: "post", class: "btn btn-primary" %></td>
                 </tr>
-
-                  <tr>
-                    <td><%= @user.username %></td>
-                    <td><%= @user.email %></td>
-                    <td><%= button_to "Select", company_users_path(company: current_company.url, user: @user.username), method: "post", class: "btn btn-primary" %></td>
-                  </tr>
               </table>
             </div>
           </div>
         <% end %>
+    </div>
 
-      <div class="col-md-5 collaborators">
-        <h2 id="content-header">Collaborators</h2>
-        <div class="table-responsive">
-          <table class="table table-striped orders">
+    <div class="col-md-5 collaborators">
+      <h2 id="content-header">Collaborators</h2>
+      <div class="table-responsive">
+        <table class="table table-striped orders">
 
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+
+        <% if current_company.collaborators %>
+          <% current_company.collaborators.each do |collaborator| %>
             <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th></th>
+              <td><%= collaborator.username %></td>
+              <td><%= collaborator.email %></td>
+              <td><%= link_to "Delete", "#" %></td>
             </tr>
-
-          <% if current_company.collaborators %>
-            <% current_company.collaborators.each do |collaborator| %>
-              <tr>
-                <td><%= collaborator.username %></td>
-                <td><%= collaborator.email %></td>
-                <td><%= link_to "Delete", "#" %></td>
-              </tr>
-            <% end %>
           <% end %>
-          </table>
-        </div>
+        <% end %>
+        </table>
       </div>
     </div>
-  </div><!--/container-->
-
+  </div>
+</div><!--/container-->
 <hr>
