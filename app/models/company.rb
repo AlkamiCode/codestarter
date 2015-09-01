@@ -18,7 +18,7 @@ class Company < ActiveRecord::Base
   end
 
   def former_collaborators
-    User.where(company_id: nil)
+    User.where(company_id: id)
   end
 
   def sorted_projects
