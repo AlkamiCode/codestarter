@@ -85,17 +85,17 @@ class Seed
   end
 
   def generate_registered_user_role
-    registered_user = Role.create!(name: "registered_user")
+    Role.create!(name: "registered_user")
     puts "Registered user role successfully created!"
   end
 
   def generate_company_admin_role
-    company_admin = Role.create!(name: "company_admin")
+    Role.create!(name: "company_admin")
     puts "Company admin role successfully created!"
   end
 
   def generate_former_collaborator_role
-    former_collaborator = Role.create!(name: "former_collaborator")
+    Role.create!(name: "former_collaborator")
     puts "Former collaborator role successfully created!"
   end
 end
