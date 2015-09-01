@@ -39,7 +39,7 @@
                 <li><%= link_to "Funded Projects", orders_path %></li>
 
                 <% if current_user && current_user.company_admin? || current_user.collaborator?  %>
-                 <li><%= link_to "#{current_user.company.name}'s Settings", company_dashboard_path(company: current_user.company.url) %></li>
+                 <li><%= link_to "#{current_user.company.name}'s dashboard", company_dashboard_path(company: current_user.company.url) %></li>
                 <% end %>
               </ul>
             </li>
