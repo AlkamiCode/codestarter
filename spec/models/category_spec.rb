@@ -9,7 +9,7 @@ RSpec.describe Category, type: :model do
     end
 
     it "creates a slug" do
-      expect(category.slug).to eq("hat_stuff")
+      expect(category.slug).to eq("hat-stuff")
     end
 
     xit "has many items" do
