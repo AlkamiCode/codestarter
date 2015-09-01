@@ -3,11 +3,11 @@ class Category < ActiveRecord::Base
   has_many :items
 
   def make_slug
-    self.slug = name.downcase.gsub(" ", "_")
+    self.slug = name.downcase.gsub(" ", "-")
   end
 
   def to_param
-    name.downcase.gsub(" ", "_")
+    name.downcase.gsub(" ", "-")
   end
 
 end
