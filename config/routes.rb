@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index]
   resources :orders, only: [:create, :index]
+  get "/:company/dashboard", to: 'companies#dashboard', as: 'company_dashboard'
 
   namespace :companies, path: ':company', as: :company do
     resources :projects
