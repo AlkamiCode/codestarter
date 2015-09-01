@@ -20,20 +20,28 @@ RSpec.describe "company admin manages collaborators", type: :feature do
 
       expect(current_path).to eq company_users_path(company: company.url)
 
-      within(".collaborators tr#user_#{user.id}") do
+      # remove their collaborationivity
+      within(".table-responsive .user:last-of-type") do
         expect(page).to have_content user.username
         expect(page).to have_content user.email
-        click_on "Remove"
+        expect(page).to_not have_link "Reinstate"
+        click_link "Remove"
       end
 
       expect(current_path).to eq company_users_path(company: company.url)
       expect(user.collaborator?).to eq (false)
       expect(user.former_collaborator?).to eq (true)
 
-      within(".collaborators td#reinstate") do
+      # reinstate their collaborationivity
+      within(".table-responsive .user:last-of-type") do
+        expect(page).to have_content user.username
+        expect(page).to have_content user.email
         expect(page).to_not have_link "Remove"
-        expect(page).to have_link "Reinstate"
+        click_link "Reinstate"
       end
+
+      expect(user.collaborator?).to eq(true)
+      expect(user.former_collaborator?).to eq(false)
     end
   end
 end
