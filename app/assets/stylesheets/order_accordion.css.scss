@@ -1,0 +1,24 @@
+$orange: #f05f40;
+
+#accordion {
+  width: 80%;
+  margin: auto;
+  margin-top: 3%;
+  text-align: center;
+  font-style: monospace;
+  h3 {
+    border: 1px solid $orange;
+    color: $orange;
+  }
+  th, tr, td {
+    text-align: center;
+    border-bottom: 1px solid $orange;
+  }
+}
+.fundings {
+  color: $orange;
+  size: 2em;
+  margin-top: 2%;
+  font-style: monospace;
+  text-align: center;
+}

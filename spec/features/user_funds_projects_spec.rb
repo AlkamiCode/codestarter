@@ -1,8 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "user funds projects in one transaction", type: :feature do
-  let!(:project) { Fabricate(:project) }
-  let!(:project_2) { Fabricate(:project) }
+  let!(:company) { Fabricate(:company) }
+  let!(:project) { Fabricate(:project, company: company) }
+  let!(:project_2) { Fabricate(:project, company: company) }
   let!(:user) { Fabricate(:user, roles: %w(registered_user)) }
 
   context "a registered user" do
@@ -40,7 +41,7 @@ RSpec.describe "user funds projects in one transaction", type: :feature do
         click_link "Checkout"
         expect(current_path).to eq orders_path
 
-        expect(page).to have_content "Your Orders"
+        expect(page).to have_content "FUNDINGS"
       end
     end
   end

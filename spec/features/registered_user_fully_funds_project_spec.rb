@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "registered user fully funds project", type: :feature do
-  let!(:company) { Fabricate(:company) }
-  let!(:project) { Fabricate(:project) }
   let!(:user) { Fabricate(:user, roles: %w(registered_user)) }
+  let!(:company) { Fabricate(:company) }
+  let!(:project) { Fabricate(:project, company_id: company.id) }
 
   scenario "project transitions from active to funded" do
     login_as(user, root_path)
