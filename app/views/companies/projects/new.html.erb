@@ -1,38 +1,45 @@
 <div class="container">
-    <div class="row">
-
-      <div class="col-lg-6">
-
-        <div class="new-project-form">
-
-          <%= form_for @project, url: {action: 'create'} do |f| %>
-            <div class="form-group">
-              <%= f.label :name %>
-              <%= f.text_field :name, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :description %>
-              <%= f.text_area :description, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :funding_goal %>
-              <%= f.text_field :funding_goal, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :image %>
-              <%= f.text_field :image, class: "form-control" %>
-            </div>
-
-            <div class="form-group">
-                <label>End Date</label>
-                <%= f.datetime_select :end_date, prefix: :end_date, default: 1.day.from_now, discard_hour: true %>
-            </div>
-                <%= f.submit "Create", class: "btn btn-primary" %>
-            </div>
-        <% end %>
-      </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"><%= current_company.name %>
+        <small>Create Project</small>
+      </h1>
     </div>
+  </div>
+
+  <%= render 'companies/users/sidebar' %>
+  <div class="col-lg-6">
+
+    <div class="new-project-form">
+
+      <%= form_for @project, url: {action: 'create'} do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :funding_goal %>
+          <%= f.text_field :funding_goal, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :image %>
+          <%= f.text_field :image, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+            <label>End Date</label>
+            <%= f.datetime_select :end_date, prefix: :end_date, default: 1.day.from_now, discard_hour: true %>
+        </div>
+            <%= f.submit "Create", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
