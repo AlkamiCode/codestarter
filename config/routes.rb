@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :index]
 
   namespace :companies, path: ':company', as: :company do
-    get "/dashboard", to: 'companies#dashboard'
+    get '/dashboard', to: 'companies#dashboard'
     resources :projects
     resources :orders, only: [:index, :show, :create]
     resources :users, only: [:show, :index, :new, :create, :update] do
