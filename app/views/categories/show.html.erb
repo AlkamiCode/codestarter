@@ -1,5 +1,6 @@
 <div class="container">
 
+<h2 class="category-projects">You can fund <span class="active-projects"><%= @sorted_projects.count %></span> active <%= 'project'.pluralize(@sorted_projects.count) %> related to <%= @sorted_projects.first.category.name %></h2>
   <% @category.projects.in_groups_of(3, false) do |projects| %>
     <div class="row">
       <% projects.each do |project| %>

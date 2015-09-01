@@ -12,6 +12,7 @@ RSpec.describe "User Can Filter Projects by Category", type: :feature do
 
       expect(current_path).to eq category_path(id: category.slug)
       expect(page).to have_content "Sample Project"
+      expect(page).to have_content "You can fund 1 active project related to Sample Category"
     end
   end
 end
