@@ -12,7 +12,8 @@ RSpec.describe "Company admin can delete project", type: :feature do
       expect(current_path).to eq root_path
 
       click_on "Account"
-      click_on "Sample Company's Projects"
+      click_on "#{company.name}'s dashboard"
+      click_on "All Projects"
 
       expect(current_path).to eq company_projects_path(company: company.url)
       expect(page).to have_content "Sample Project"

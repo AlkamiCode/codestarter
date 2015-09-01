@@ -18,6 +18,7 @@ RSpec.describe "company admin creates a project" do
       login_as(user, root_path)
 
       click_link "Account"
+      click_link "#{company.name}'s dashboard"
       click_link "Create Project"
 
       expect(current_path).to eq new_company_project_path(company: company.url)
@@ -75,6 +76,7 @@ RSpec.describe "company admin creates a project" do
       login_as(admin2, root_path)
 
       click_link "Account"
+      click_link "#{company_2.name}'s dashboard"
       click_link "Create Project"
 
       expect(current_path).to eq new_company_project_path(company: company_2.url)

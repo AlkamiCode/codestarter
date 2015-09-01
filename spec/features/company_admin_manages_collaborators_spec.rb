@@ -16,9 +16,11 @@ RSpec.describe "company admin manages collaborators", type: :feature do
       login_as(admin, root_path)
 
       click_link "Account"
-      click_link "Collaborators"
+      click_link "#{company.name}'s dashboard"
 
-      expect(current_path).to eq company_users_path(company: company.url)
+      expect(current_path).to eq company_dashboard_path(company: company.url)
+
+      click_link "Collaborators"
 
       # remove their collaborationivity
       within(".table-responsive .user:last-of-type") do
