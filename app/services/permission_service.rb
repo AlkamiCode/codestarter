@@ -45,7 +45,8 @@ class PermissionService
   def company_admin_permissions
     return true if controller == "homepage" && action == "index"
     return true if controller == "projects" && action.in?(%w(index show))
-    return true if controller == "companies" && action.in?(%w(index show dashboard))
+    return true if controller == "companies" && action.in?(%w(index show))
+    return true if controller == "companies/companies" && action.in?(%w(dashboard))
     return true if controller == "companies/projects" && action.in?(%w(index show new create edit update destroy))
     return true if controller == "companies/users" && action.in?(%w(index new create update search))
     return true if controller == "sessions" && action.in?(%w(new create destroy))
@@ -57,7 +58,8 @@ class PermissionService
   def collaborator_permissions
     return true if controller == "homepage" && action == "index"
     return true if controller == "projects" && action.in?(%w(index show))
-    return true if controller == "companies" && action.in?(%w(index show dashboard))
+    return true if controller == "companies" && action.in?(%w(index show))
+    return true if controller == "companies/companies" && action.in?(%w(dashboard))
     return true if controller == "companies/projects" && action.in?(%w(index show new create edit update destroy))
     return true if controller == "companies/users" && action.in?(%w(index))
     return true if controller == "sessions" && action.in?(%w(new create destroy))
