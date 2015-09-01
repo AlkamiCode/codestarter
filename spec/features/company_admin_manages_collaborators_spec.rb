@@ -12,7 +12,7 @@ RSpec.describe "company admin manages collaborators", type: :feature do
                           email: "collaborator@email.com") }
 
   context "a company admin" do
-    it "removes a collaborator" do
+    it "changes a collaborators role to former_collaborator" do
       login_as(admin, root_path)
 
       click_link "Account"
@@ -27,10 +27,12 @@ RSpec.describe "company admin manages collaborators", type: :feature do
       end
 
       expect(current_path).to eq company_users_path(company: company.url)
+      expect(user.collaborator?).to eq (false)
+      expect(user.former_collaborator?).to eq (true)
 
-      within(".collaborators") do
-        expect(page).to_not have_content user.username
-        expect(page).to_not have_content user.email
+      within(".collaborators td#reinstate") do
+        expect(page).to_not have_link "Remove"
+        expect(page).to have_link "Reinstate"
       end
     end
   end

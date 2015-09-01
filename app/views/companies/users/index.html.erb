@@ -35,7 +35,7 @@
                     <td id="reinstate"><%= link_to "Reinstate", company_user_path(company: current_company.url, id: collaborator.id, reinstate: "reinstate"), method: :put %></td>
                     <% else %>
                       <td id="remove"><%= link_to "Remove", company_user_path(company: current_company.url, id: collaborator.id), method: :put %></td>
-                  <% end %>
+                    <% end %>
                 <% end %>
               <% end %>
             <% end %>
