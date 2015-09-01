@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :companies, only: [:index]
   resources :orders, only: [:create, :index]
+  resources :projects, only: [:index, :show]
+  resources :categories, only: [:index, :show]
+  resources :cart_items, only: [:index, :create, :update, :destroy]
 
   namespace :companies, path: ':company', as: :company do
     resources :projects
@@ -10,26 +13,6 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index, :new, :create, :update] do
       member do
         get :search
-      end
-    end
-  end
-
-  resources :projects, only: [:index, :show]
-  resources :categories, only: [:show, :index]
-
-  resources :cart_items, only: [:index, :create, :update, :destroy] do
-    member do
-      post :increment, :decrement
-    end
-  end
-
-  namespace :admin do
-    get "/dashboard", to: "admin#index"
-    resources :items
-    resources :orders, only: [:index, :show]
-    resources :sales, only: [:index, :new, :create] do
-      member do
-        post :end_sale
       end
     end
   end

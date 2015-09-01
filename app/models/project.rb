@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :company
+  belongs_to :category
 
   validates :description,
             :current_funding,
