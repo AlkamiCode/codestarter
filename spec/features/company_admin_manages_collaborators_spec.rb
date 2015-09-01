@@ -22,7 +22,6 @@ RSpec.describe "company admin manages collaborators", type: :feature do
 
       click_link "Collaborators"
 
-      # remove their collaborationivity
       within(".table-responsive .user:last-of-type") do
         expect(page).to have_content user.username
         expect(page).to have_content user.email
@@ -34,7 +33,6 @@ RSpec.describe "company admin manages collaborators", type: :feature do
       expect(user.collaborator?).to eq (false)
       expect(user.former_collaborator?).to eq (true)
 
-      # reinstate their collaborationivity
       within(".table-responsive .user:last-of-type") do
         expect(page).to have_content user.username
         expect(page).to have_content user.email
