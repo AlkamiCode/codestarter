@@ -53,9 +53,9 @@ class Companies::ProjectsController < Companies::CompaniesController
 
   private
 
-  def find_company
-    @company = Company.where(url: params[:company]).first!
-  end
+  # def find_company
+  #   @company = Company.where(url: params[:company]).first!
+  # end
 
   def find_project
     @project = @company.projects.find(params[:id])

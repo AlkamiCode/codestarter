@@ -40,4 +40,8 @@ class ApplicationController < ActionController::Base
   def authorized?
     current_permission.allow?(params[:controller], params[:action])
   end
+
+  def find_company
+    @company = Company.where(url: params[:company]).first!
+  end
 end
