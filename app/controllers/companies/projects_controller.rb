@@ -15,6 +15,7 @@ class Companies::ProjectsController < Companies::CompaniesController
   def new
     if current_company == current_user.company
       @project = Project.new
+      @categories = all_categories.map(&:name)
     else
       flash[:danger] = "You are not authorized to view this page."
       redirect_to root_path
