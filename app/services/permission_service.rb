@@ -12,6 +12,8 @@ class PermissionService
       company_admin_permissions
     elsif user.collaborator?
       collaborator_permissions
+    elsif user.former_collaborator?
+      former_collaborator_permissions
     elsif user.registered_user?
       registered_user_permissions
     else
@@ -70,9 +72,10 @@ class PermissionService
     return true if controller == "orders" && action.in?(%w(index show create))
   end
 
-  def former_collaborator
+  def former_collaborator_permissions
     return true if controller == "homepage" && action == "index"
     return true if controller == "projects" && action.in?(%w(index show))
+    return true if controller == "categories" && action.in?(%w(index show))
     return true if controller == "companies" && action.in?(%w(index show))
     return true if controller == "companies/projects" && action.in?(%w(index show))
     return true if controller == "sessions" && action.in?(%w(new create destroy))
