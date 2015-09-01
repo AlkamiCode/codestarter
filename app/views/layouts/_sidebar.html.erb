@@ -1,0 +1,9 @@
+<div class="col-md-3" id="leftCol">
+  <ul class="nav nav-stacked" id="sidebar">
+    <li><%= link_to "All Projects", company_projects_path(company: current_user.company.url) %></li>
+    <li><%= link_to "Create Project", new_company_project_path(company: current_user.company.url) %></li>
+    <li><a href="#" id="active">Active Projects</a></li>
+    <li><a href="#" id="ended">Ended Projects</a></li>
+    <li><%= link_to "Collaborators", company_users_path(company: current_user.company.url) %></li>
+  </ul>
+</div>
