@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { in: 5..25 }, confirmation: true
   validates :email, uniqueness: true, presence: true,
                     format: { with: VALID_EMAIL_REGEX },
-                    length: { maximum: 25 }
+                    length: { maximum: 50 }
 
   def company_admin?
     roles.exists?(name: 'company_admin')
