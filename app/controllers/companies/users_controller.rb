@@ -10,12 +10,20 @@ class Companies::UsersController < Companies::CompaniesController
     @user = User.find_by(username: "#{params[:user]}")
     if @user.company_id == current_company.id
       flash[:danger] =
-        "#{@user.username.capitalize} already is a registered collaborator."
+        "#{@user.username.capitalize} is already a registered collaborator."
     else
-      @user.roles << Role.where(name: "company_admin").first_or_initialize
+      @user.roles << Role.where(name: "collaborator").first_or_initialize
       @user.update_attribute("company_id", current_company.id)
     end
     render :new
+  end
+
+  def update
+    user = User.find_by(id: params[:id])
+    user.update_attribute("company_id", nil)
+    role = user.roles.where(name: "collaborator")
+    user.roles.delete(role)
+    redirect_to :back
   end
 
   def search

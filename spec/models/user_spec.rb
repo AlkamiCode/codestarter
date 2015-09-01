@@ -62,13 +62,38 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "a business admin" do
+  context "a company admin" do
     let!(:company) { Fabricate(:company) }
-    let!(:user) { Fabricate(:user, company_id: company.id,
-      roles: %w(company_admin)) }
+    let!(:user) { Fabricate(:user,
+                            company_id: company.id,
+                            roles: %w(company_admin)) }
 
     it "has an associated company" do
       expect(user.company.name).to eq "Sample Company"
+    end
+
+    it "is a company admin" do
+      expect(user.company_admin?).to eq true
+    end
+  end
+
+  context "a collaborator" do
+    let!(:company) { Fabricate(:company) }
+    let!(:user) { Fabricate(:user,
+                            company_id: company.id,
+                            roles: %w(collaborator)) }
+
+    it "has an associated company" do
+      expect(user.company.name).to eq "Sample Company"
+    end
+
+    it "is a collaborator" do
+      expect(user.collaborator?).to eq true
+    end
+
+    it "is not a collaborator without a company_id" do
+      user.company_id = nil
+      expect(user.collaborator?).to eq true
     end
   end
 end

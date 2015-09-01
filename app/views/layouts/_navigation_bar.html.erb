@@ -38,7 +38,7 @@
                 <li><a href="#" data-toggle="modal" data-target="#update-modal-small">Update Info</a></li>
                 <li><%= link_to "Funded Projects", orders_path %></li>
 
-                <% if current_user && current_user.company_admin?  %>
+                <% if current_user && current_user.company_admin? || current_user.collaborator?  %>
                   <li><%= link_to "#{current_user.company.name}'s Projects", company_projects_path(company: current_user.company.url) %></li>
                   <li><%= link_to "Create Project", new_company_project_path(company: current_user.company.url) %></li>
                   <li><%= link_to "Collaborators", company_users_path(company: current_user.company.url) %></li>

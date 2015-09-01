@@ -1,4 +1,4 @@
-require "rails_helper"
+  require "rails_helper"
 
 RSpec.describe "company admin registers collaborators" do
   context "a company admin" do
@@ -79,7 +79,7 @@ RSpec.describe "company admin registers collaborators" do
 
       click_button "Select"
       expect(page).to have_content
-        "#{user.username.capitalize} already is a registered collaborator."
+      "#{user.username.capitalize} is already a registered collaborator."
     end
   end
 end
