@@ -15,7 +15,7 @@ class Companies::ProjectsController < Companies::CompaniesController
   def new
     if current_company == current_user.company
       @project = Project.new
-      @categories = all_categories.map(&:name)
+      @categories = all_categories.map { |c| [ c.name, c.id ] }
     else
       flash[:danger] = "You are not authorized to view this page."
       redirect_to root_path
@@ -64,8 +64,8 @@ class Companies::ProjectsController < Companies::CompaniesController
                                            :funding_goal,
                                            :image,
                                            :category_id)
-    prms[:company_id], prms[:current_funding], prms[:end_date], prms[:category_id] =
-      current_company.id, 0, formatted_date, Category.find_by(name: params[:category_id]).id
+    prms[:company_id], prms[:current_funding], prms[:end_date] =
+      current_company.id, 0, formatted_date
     prms
   end
 
