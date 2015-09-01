@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :cart
   helper_method :current_user
+  helper_method :all_categories
 
   add_flash_types :success, :info, :warning, :danger
 
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::Base
 
   def cart
     @cart ||= Cart.new(session[:cart])
+  end
+
+  def all_categories
+    Category.all
   end
 
   def render_not_found
