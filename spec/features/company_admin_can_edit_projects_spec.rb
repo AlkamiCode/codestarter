@@ -11,7 +11,8 @@ RSpec.describe "company admin can edit projects", type: :feature do
       login_as(user, root_path)
 
       click_link "Account"
-      click_link "Sample Company's Projects"
+      click_link "#{company.name}'s dashboard"
+      click_link "All Projects"
       click_on "Edit"
 
       fill_in "Name", with: "New name"

@@ -16,9 +16,11 @@ RSpec.describe "company admin views projects" do
       expect(current_path).to eq root_path
 
       click_link "Account"
-      click_link "#{company.name}'s Projects"
+      click_link "#{company.name}'s dashboard"
 
-      expect(current_path).to eq company_projects_path(company: company.url)
+      expect(current_path).to eq company_dashboard_path(company: company.url)
+
+      click_link "All Projects"
 
       within(".row") do
         within(".portfolio-item") do
