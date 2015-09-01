@@ -19,12 +19,20 @@ class Companies::UsersController < Companies::CompaniesController
   end
 
   def update
-    binding.pry
-    # user = User.find_by(id: params[:id])
-    # user.update_attribute("company_id", nil)
-    # role = user.roles.where(name: "collaborator")
-    # user.roles.delete(role)
-    redirect_to :back
+    # binding.pry
+    # if params[:reinstate].nil?
+      user = User.find_by(id: params[:id])
+      user.update_attribute("company_id", nil)
+      role = user.roles.where(name: "collaborator")
+      # user.roles.delete(role)
+      redirect_to :back
+    # else
+    #   user = User.find_by(id: params[:id])
+    #   user.update_attribute("company_id", current_company.id)
+    #   role = user.roles.where(name: "collaborator")
+    #   user.roles.update(role)
+    #   redirect_to :back
+    # end
   end
 
   def search
