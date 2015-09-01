@@ -190,4 +190,49 @@ RSpec.describe "PermissionService", type: :model do
       end
     end
   end
+
+  context "as a former_collaborator user" do
+    let(:user) { Fabricate(:user, roles: %w(former_collaborator)) }
+
+    { "homepage#index" => true,
+      "projects#index" => true,
+      "projects#show" => true,
+      "categories#index" => true,
+      "categories#show" => true,
+      "companies#index" => true,
+      "companies#show" => true,
+      "companies/projects#index" => true,
+      "companies/projects#show" => true,
+      "companies/projects#create" => nil,
+      "companies/projects#edit" => nil,
+      "companies/projects#update" => nil,
+      "companies/projects#destroy" => nil,
+      "companies/users#index" => nil,
+      "companies/users#new" => nil,
+      "companies/users#create" => nil,
+      "companies/users#search" => nil,
+      "sessions#new" => true,
+      "sessions#create" => true,
+      "sessions#destroy" => true,
+      "users#show" => true,
+      "users#update" => true,
+      "cart_items#index" => true,
+      "cart_items#create" => true,
+      "cart_items#update" => true,
+      "cart_items#destroy" => true,
+      "orders#index" => true,
+      "orders#show" => true,
+      "orders#create" => true,
+      "users#create" => nil }.each do |pair, result|
+
+      context "looking at #{pair}" do
+        let(:controller) { pair.split('#').first }
+        let(:action) { pair.split('#').last }
+
+        it "#{result ? 'allows' : 'denies'} access" do
+          expect(allowed).to be(result)
+        end
+      end
+    end
+  end
 end

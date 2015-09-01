@@ -1,4 +1,4 @@
-  require "rails_helper"
+require "rails_helper"
 
 RSpec.describe "company admin registers collaborators" do
   context "a company admin" do

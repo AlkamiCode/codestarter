@@ -1,6 +1,5 @@
 class Companies::UsersController < Companies::CompaniesController
   def index
-    @collaborators = current_company.collaborators
   end
 
   def new
@@ -19,11 +18,22 @@ class Companies::UsersController < Companies::CompaniesController
   end
 
   def update
-    user = User.find_by(id: params[:id])
-    user.update_attribute("company_id", nil)
-    role = user.roles.where(name: "collaborator")
-    user.roles.delete(role)
-    redirect_to :back
+    if params[:reinstate].nil?
+      user = User.find_by(id: params[:id])
+      # user.update_attribute("company_id", nil)
+      role = user.roles.where(name: "collaborator")
+      user.roles.delete(role)
+      user.roles << Role.create(name: "former_collaborator")
+      flash[:success] = "#{user.username} is no longer a collaborator"
+      redirect_to :back
+    else
+      user = User.find_by(id: params[:id])
+      role = user.roles.where(name: "former_collaborator")
+      user.roles.delete(role)
+      user.roles << Role.create(name: "collaborator")
+      flash[:success] = "#{user.username} is now a collaborator"
+      redirect_to :back
+    end
   end
 
   def search

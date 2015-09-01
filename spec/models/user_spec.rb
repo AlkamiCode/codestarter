@@ -90,10 +90,20 @@ RSpec.describe User, type: :model do
     it "is a collaborator" do
       expect(user.collaborator?).to eq true
     end
+  end
 
-    it "is not a collaborator without a company_id" do
-      user.company_id = nil
-      expect(user.collaborator?).to eq true
+  context "a former collaborator" do
+    let!(:company) { Fabricate(:company) }
+    let!(:user) { Fabricate(:user,
+                            company_id: company.id,
+                            roles: %w(former_collaborator)) }
+
+    it "has an associated company" do
+      expect(user.company.name).to eq "Sample Company"
+    end
+
+    it "is a former collaborator" do
+      expect(user.former_collaborator?).to eq true
     end
   end
 end
