@@ -26,10 +26,6 @@ class User < ActiveRecord::Base
     roles.exists?(name: 'collaborator')
   end
 
-  def former_collaborator?
-    roled.exists?(name: 'former_collaborator')
-  end
-
   def to_param
     "dashboard"
   end
