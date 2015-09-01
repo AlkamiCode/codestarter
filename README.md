@@ -3,6 +3,7 @@
 ---
 
 [![Stories in Ready](https://badge.waffle.io/marlabrizel/the_pivot.svg?label=ready&title=Ready)](http://waffle.io/marlabrizel/the_pivot) [![Build Status](https://travis-ci.org/marlabrizel/the_pivot.svg)](https://travis-ci.org/marlabrizel/the_pivot)
+[![Coverage Status](https://coveralls.io/repos/marlabrizel/the_pivot/badge.svg?branch=master&service=github)](https://coveralls.io/github/marlabrizel/the_pivot?branch=master)
 
 ##### [Marla Brizel](https://github.com/marlabrizel), [Dmitry Vizersky](https://github.com/Dmitry1007), [Lovisa Svallingson](https://github.com/applegrain)
 
@@ -43,5 +44,3 @@ The Pivot is the first project in Module 3 at the Turing School. Each group are 
 * The group member that merges the PR should
 * delete the branch on GitHub
 * notify the group members on Slack to pull from master
-
-

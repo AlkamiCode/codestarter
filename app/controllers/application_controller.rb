@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :cart
   helper_method :current_user
+  helper_method :all_categories
 
   add_flash_types :success, :info, :warning, :danger
 
@@ -26,6 +27,10 @@ class ApplicationController < ActionController::Base
     @cart ||= Cart.new(session[:cart])
   end
 
+  def all_categories
+    Category.all
+  end
+
   def render_not_found
     render "/public/404", status: 404
   end
@@ -34,5 +39,9 @@ class ApplicationController < ActionController::Base
 
   def authorized?
     current_permission.allow?(params[:controller], params[:action])
+  end
+
+  def find_company
+    @company = Company.where(url: params[:company]).first!
   end
 end

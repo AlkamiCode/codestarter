@@ -2,6 +2,7 @@ class Seed
   def self.start
     seed = Seed.new
     seed.generate_companies
+    seed.generate_categories
     seed.generate_projects
   end
 
@@ -12,6 +13,7 @@ class Seed
         description: Faker::Lorem.paragraph,
         image: Faker::Avatar.image,
         company_id: rand(1..20),
+        category_id: rand(1..10),
         current_funding: rand(0..5000),
         funding_goal: rand(500..10000),
         end_date: Faker::Date.forward(30),
@@ -26,8 +28,17 @@ class Seed
         name: Faker::Company.name,
         description: Faker::Company.catch_phrase,
         logo: Faker::Company.logo
-      )
-    puts "Company #{i}: #{company.name} successfully created!"
+        )
+      puts "Company #{i}: #{company.name} successfully created!"
+    end
+  end
+
+  def generate_categories
+    10.times do |i|
+      category = Category.create!(
+        name: Faker::Commerce.department
+        )
+    puts "Category #{i}: #{category.name} successfully created!"
     end
   end
 end
