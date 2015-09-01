@@ -19,10 +19,11 @@ class Companies::UsersController < Companies::CompaniesController
   end
 
   def update
-    user = User.find_by(id: params[:id])
-    user.update_attribute("company_id", nil)
-    role = user.roles.where(name: "collaborator")
-    user.roles.delete(role)
+    binding.pry
+    # user = User.find_by(id: params[:id])
+    # user.update_attribute("company_id", nil)
+    # role = user.roles.where(name: "collaborator")
+    # user.roles.delete(role)
     redirect_to :back
   end
 
