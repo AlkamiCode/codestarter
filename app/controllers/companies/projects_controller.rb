@@ -54,10 +54,6 @@ class Companies::ProjectsController < Companies::CompaniesController
 
   private
 
-  # def find_company
-  #   @company = Company.where(url: params[:company]).first!
-  # end
-
   def find_project
     @project = @company.projects.find(params[:id])
   end
@@ -66,9 +62,10 @@ class Companies::ProjectsController < Companies::CompaniesController
     prms = params.require(:project).permit(:name,
                                            :description,
                                            :funding_goal,
-                                           :image)
-    prms[:company_id], prms[:current_funding], prms[:end_date] =
-      current_company.id, 0, formatted_date
+                                           :image,
+                                           :category_id)
+    prms[:company_id], prms[:current_funding], prms[:end_date], prms[:category_id] =
+      current_company.id, 0, formatted_date, Category.find_by(name: params[:category_id]).id
     prms
   end
 
