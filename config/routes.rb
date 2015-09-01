@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   root to: "homepage#index"
 
   resources :companies, only: [:index]
+<<<<<<< HEAD
   resources :orders, only: [:create, :index]
+=======
+  resources :orders, only: [:create, :index, :show]
+  resources :projects, only: [:index, :show]
+  resources :categories, only: [:index, :show]
+>>>>>>> add category seeds
 
   namespace :companies, path: ':company', as: :company do
     resources :projects
@@ -13,9 +19,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :projects, only: [:index, :show]
-  resources :categories, only: [:show, :index]
 
   resources :cart_items, only: [:index, :create, :update, :destroy] do
     member do
