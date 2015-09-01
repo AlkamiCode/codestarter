@@ -12,7 +12,6 @@ class Companies::CompaniesController < ApplicationController
   end
 
   def dashboard
-    # @current_company ||= Company.find_by(url: params[:company])
     company = Company.find_by(url: params[:company])
     @projects = company.projects
   end
