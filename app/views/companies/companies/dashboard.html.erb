@@ -1,0 +1,45 @@
+<div class="container">
+  <!-- Project Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"><%= @current_company.name %>
+        <small>All Projects</small>
+      </h1>
+    </div>
+  </div>
+
+    <div class="row">
+      <%= render 'layouts/sidebar' %>
+
+      <div class="col-md-9 collaborators">
+        <h2 id="content-header">Projects</h2>
+
+        <div class="table-responsive">
+          <table class="table table-striped orders">
+
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Funding Goal</th>
+              <th>Current Funding</th>
+              <th></th>
+              <th></th>
+            </tr>
+
+              <% @projects.each do |project| %>
+                <tr>
+                  <td><%= link_to project.name, company_project_path(company: @current_company.url, id: project.id) %></td>
+                  <td><%= project.description %></td>
+                  <td><%= project.funding_goal %></td>
+                  <td><%= project.current_funding %></td>
+                  <td id="remove"><%= link_to "Remove", company_user_path(company: @current_company.url, id: project.id), method: :put %></td>
+                  <td><%= link_to "View", company_project_path(company: @current_company.url, id: project.id) %></td>
+                </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!--/container-->
+<hr>
