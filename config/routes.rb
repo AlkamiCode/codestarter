@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:index, :create, :update, :destroy]
 
   namespace :companies, path: ':company', as: :company do
+    get '/dashboard', to: 'companies#dashboard'
     resources :projects
     resources :orders, only: [:index, :show, :create]
     resources :users, only: [:show, :index, :new, :create, :update] do
