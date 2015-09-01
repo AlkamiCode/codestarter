@@ -3,10 +3,6 @@ class OrdersController < ApplicationController
     @orders = current_user.orders
   end
 
-  def show
-    @order = current_user.orders.find(params[:id])
-  end
-
   def create
     if current_user
       @order = current_user.orders.build

@@ -9,7 +9,7 @@
   <div class="row">
       <div class="col-md-5">
           <a href="#">
-              <%= image_tag(cart_item.image, class: 'img-responsive') %>
+            <%= image_tag(cart_item.image, class: 'img-responsive') %>
           </a>
       </div>
       <div class="col-md-7">
@@ -32,14 +32,16 @@
                 <p>Current Funding: <strong class="funding"><%= number_to_currency cart_item.current_funding %></strong></p>
           </div>
       </div>
-<hr>
+    <hr>
   </div>
-</div>
-<div class="checkout-button">
-  <% if current_user %>
-    <%= link_to "Checkout", orders_path(current_user.id, funding_amount: cart_item.funding_amount), method: :post, class: "btn btn-primary checkout" %>
-  <% else %>
-    <a href="#" data-toggle="modal" data-target="#login-modal-small" class="btn btn-primary checkout">Log in to Checkout</a>
+
+  <div class="checkout-button">
+    <% if current_user %>
+      <%= link_to "Checkout", orders_path(current_user.id, funding_amount: cart_item.funding_amount), method: :post, class: "btn btn-primary checkout" %>
+    <% else %>
+      <a href="#" data-toggle="modal" data-target="#login-modal-small" class="btn btn-primary checkout">Log in to Checkout</a>
+    <% end %>
+  </div>
+
   <% end %>
 </div>
-<% end %>
