@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe "company admin can edit projects", type: :feature do
   let!(:company) { Fabricate(:company) }
-  let!(:project) { Fabricate(:project, company_id: company.id) }
+  let!(:category) { Fabricate(:category) }
+  let!(:project) { Fabricate(:project, company_id: company.id, category_id: category.id) }
 
   context "as a company admin" do
     let!(:user) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }

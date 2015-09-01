@@ -1,0 +1,27 @@
+<div class="container">
+
+<h2 class="category-projects">You can fund <span class="active-projects"><%= @sorted_projects.count %></span> active <%= 'project'.pluralize(@sorted_projects.count) %> related to <%= @sorted_projects.first.category.name %></h2>
+  <% @category.projects.in_groups_of(3, false) do |projects| %>
+    <div class="row">
+      <% projects.each do |project| %>
+        <div class="col-md-4 portfolio-item">
+          <div class="thumbnail">
+            <img src= <%= project.image %> alt= <%= project.name %>>
+            <div class="caption">
+              <h3><%= project.name %></h3>
+              <p class="all-projects-description"><%= project.description %></p>
+              <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped <%= 'active' if project.funding_in_percentage < 100 %>" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.funding_in_percentage %>%">
+                </div>
+              </div>
+              <p><span class="percentage-of-goal"><%= project.funding_in_percentage %>%</span> funded</p>
+              <p>Current Funding: <strong class="funding"><%= number_to_currency project.current_funding %></strong></p>
+              <p>Funding Goal: <strong class="funding"><%= number_to_currency project.funding_goal %></strong></p>
+              <%= link_to "View Project", project_path(project), class: "btn btn-primary", role: "button" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+</div>

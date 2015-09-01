@@ -23,10 +23,15 @@
           <%= f.text_area :description, class: "form-control" %>
         </div>
 
-        <div class="form-group">
-          <%= f.label :funding_goal %>
-          <%= f.text_field :funding_goal, class: "form-control" %>
-        </div>
+          <div class="form-group">
+            <%= f.label :category_id, "Category" %>
+            <%= f.select :category_id, @categories %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :funding_goal %>
+            <%= f.text_field :funding_goal, class: "form-control" %>
+          </div>
 
         <div class="form-group">
           <%= f.label :image %>

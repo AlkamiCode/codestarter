@@ -4,6 +4,8 @@ RSpec.describe "company admin creates a project" do
   context "a company admin" do
     let!(:company) { Fabricate(:company) }
 
+    let!(:category) { Fabricate(:category) }
+
     let!(:user) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }
 
     let!(:project) { Fabricate.build(:project) }
@@ -54,6 +56,8 @@ RSpec.describe "company admin creates a project" do
   context "a different company admin" do
     let!(:company) { Fabricate(:company) }
     let!(:company_2) { Fabricate(:company, name: "Different Company") }
+
+    let!(:category) { Fabricate(:category) }
 
     let!(:admin) { Fabricate(:user, company_id: company.id, roles: %w(company_admin)) }
     let!(:admin2) { Fabricate(:user,

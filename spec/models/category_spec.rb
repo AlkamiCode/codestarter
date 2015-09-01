@@ -9,11 +9,11 @@ RSpec.describe Category, type: :model do
     end
 
     it "creates a slug" do
-      expect(category.slug).to eq("hat_stuff")
+      expect(category.slug).to eq("hat-stuff")
     end
 
-    xit "has many items" do
-      expect(category.items).to eq([])
+    it "has many projects" do
+      expect(category.projects).to eq([])
     end
   end
 end
