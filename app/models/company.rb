@@ -14,7 +14,8 @@ class Company < ActiveRecord::Base
   end
 
   def collaborators
-    User.where(company_id: id)
+    users = User.where(company_id: id)
+    users.reject { |u| u.roles.include?(Role.find_by(name: "company_admin")) }
   end
 
   def former_collaborators
