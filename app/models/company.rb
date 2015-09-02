@@ -18,6 +18,11 @@ class Company < ActiveRecord::Base
     users.reject { |u| u.roles.include?(Role.find_by(name: "company_admin")) }
   end
 
+  def company_admins
+    users = User.where(company_id: id)
+    users.select { |u| u.roles.include?(Role.find_by(name: "company_admin")) }
+  end
+
   def former_collaborators
     User.where(company_id: id)
   end
