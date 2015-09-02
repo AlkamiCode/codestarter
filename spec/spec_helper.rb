@@ -6,7 +6,6 @@ Coveralls.wear!
 
 RSpec.configure do |config|
   require "capybara/rspec"
-  require 'capybara/email/rspec'
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
