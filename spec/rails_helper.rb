@@ -25,7 +25,6 @@ RSpec.configure do |config|
     end
   end
 
-
   def cart
     @cart ||= Cart.new(session[:cart])
   end
