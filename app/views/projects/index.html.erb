@@ -1,5 +1,8 @@
 <div class="container">
   <h2 class="projects-index">Explore <span class="active-projects"><%= @projects.count %></span> Active Projects     <%= fa_icon "search" %></h2>
+    <% if current_user && current_user.company_admin? || current_user.collaborator? %>
+      <%= button_to "#{current_user.company.name}'s dashboard", company_dashboard_path(company: current_user.company.url), method: :get, class: "btn btn-primary" %>
+    <% end %>
 
   <%= will_paginate %>
     <% @projects.in_groups_of(3, false) do |projects| %>
