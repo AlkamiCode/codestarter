@@ -12,8 +12,6 @@ RSpec.describe "user does not have link to empty cart", type: :feature do
 
     expect(current_path).to eq(root_path)
 
-    # login_as(user, root_path)
-
     click_link "Projects"
 
     expect(current_path).to eq projects_path
@@ -22,23 +20,6 @@ RSpec.describe "user does not have link to empty cart", type: :feature do
     page.find("#cart").click
 
     expect(current_path).to eq cart_path
-
-    # within(".cart-options") do
-    #   fill_in 'funding_amount', with: "300"
-    #   click_button "Set Amount"
-    # end
-
-    # expect(page).to have_content "$300.00"
-    # expect(project.status).to eq("active")
-
-    # click_link "Checkout"
-    # project.reload
-
-    # expect(current_path).to eq orders_path
-    # expect(project.status).to eq("funded")
-
-    # visit projects_path
-    # expect(page).to_not have_content(project.name)
   end
 
   scenario "user gets redirected home when she empties cart" do
@@ -54,5 +35,6 @@ RSpec.describe "user does not have link to empty cart", type: :feature do
     click_link("Remove")
 
     expect(current_path).to eq(root_path)
+    expect(page).to have_content("Your Cart Is Empty!")
   end
 end
