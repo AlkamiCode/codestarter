@@ -5,16 +5,16 @@
       <h3>Update</h3><br>
 
       <%= f.label :new_username %><br>
-      <%= f.text_field :username %><br>
+      <%= f.text_field :username, value: display_username %><br>
+
+      <%= f.label :email %><br>
+      <%= f.text_field :email, value: display_user_email %><br><br>
 
       <%= f.label :new_password %><br>
       <%= f.text_field :password, type: "password" %><br>
 
       <%= f.label :password_confirmation %><br>
       <%= f.text_field :password_confirmation, type: "password" %><br>
-
-      <%= f.label :email %><br>
-      <%= f.text_field :email, type: "password" %><br><br>
 
       <%= f.submit "Update Info", class: "btn" %>
     <% end %>
