@@ -21,8 +21,8 @@ RSpec.feature "User can log out", type: :feature do
     expect(current_path).to eq root_path
   end
 
-  scenario "can register successfully from cart page" do
-    visit cart_path
+  scenario "can register successfully from projects page" do
+    visit projects_path
 
     expect do
       within (".register-modal") do
@@ -34,7 +34,7 @@ RSpec.feature "User can log out", type: :feature do
       end
     end.to change { User.count }.from(0).to(1)
 
-    expect(current_path).to eq cart_path
+    expect(current_path).to eq projects_path
   end
 
   scenario "after user registers user is able to logout" do
