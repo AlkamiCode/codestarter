@@ -18,10 +18,10 @@ module JurassicParka
 
     config.action_mailer.smtp_settings = {
       address:                "smtp.madrillapp.com",
-      domain:                 "Emailery.com",
+      domain:                 "codestarter.herokuapp.com",
       user_name:              "lovisasvallingson@gmail.com",
-      password:               "FYHdmMVl9EIqCvsR783lQQ",
-      enable_starttls_auto:    true
+      password:               ENV['mandrill_api_key'],
+      enable_starttls_auto:   true
     }
 
     config.active_record.raise_in_transactional_callbacks = true
