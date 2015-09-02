@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index, :new, :create, :update] do
       member do
         get :search
+        post :remove_collaborator
+        post :reinstate
       end
     end
   end

@@ -7,6 +7,7 @@ class Seed
     seed.generate_registered_user_role
     seed.generate_former_collaborator_role
     seed.generate_company_admin_role
+    seed.generate_collaborator_role
     seed.generate_customers
     seed.generate_company_admins
     seed.generate_jorge
@@ -92,6 +93,11 @@ class Seed
   def generate_company_admin_role
     Role.create!(name: "company_admin")
     puts "Company admin role successfully created!"
+  end
+
+  def generate_collaborator_role
+    Role.create!(name: "collaborator")
+    puts "Collaborator role successfully created!"
   end
 
   def generate_former_collaborator_role
