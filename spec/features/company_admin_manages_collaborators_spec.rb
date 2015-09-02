@@ -8,7 +8,7 @@ RSpec.describe "company admin manages collaborators", type: :feature do
   let!(:user) { Fabricate(:user,
                           username: "collaborator",
                           company_id: company.id,
-                          roles: %w(collaborator@gmail.com),
+                          roles: %w(collaborator),
                           email: "collaborator@email.com") }
 
   context "a company admin" do
