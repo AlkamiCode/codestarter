@@ -17,25 +17,6 @@ class Companies::UsersController < Companies::CompaniesController
     render :new
   end
 
-  # def update
-  #   if params[:reinstate].nil?
-  #     user = User.find_by(id: params[:id])
-  #     # user.update_attribute("company_id", nil)
-  #     role = user.roles.where(name: "collaborator")
-  #     user.roles.delete(role)
-  #     user.roles << Role.create(name: "former_collaborator")
-  #     flash[:success] = "#{user.username} is no longer a collaborator"
-  #     redirect_to :back
-  #   else
-  #     user = User.find_by(id: params[:id])
-  #     role = user.roles.where(name: "former_collaborator")
-  #     user.roles.delete(role)
-  #     user.roles << Role.create(name: "collaborator")
-  #     flash[:success] = "#{user.username} is now a collaborator"
-  #     redirect_to :back
-  #   end
-  # end
-
   def remove_collaborator
     if params[:reinstate].nil?
       user = User.find_by(id: params[:id])
