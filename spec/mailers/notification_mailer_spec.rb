@@ -1,5 +1,4 @@
 require "rails_helper"
-require "capybara/rails"
 
 RSpec.describe NotificationMailer, type: :mailer do
   context "when a user registers" do
@@ -7,7 +6,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it "receives an email confirming successful registration" do
       user.save!
-      NotificationMailer.contact(user.email, "register").deliver_now
+      NotificationMailer.contact(user.email).deliver_now
       email = ActionMailer::Base.deliveries.last
 
       expect(email.to.first).to eq(user.email)
