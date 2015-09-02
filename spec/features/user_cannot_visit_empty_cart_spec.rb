@@ -22,5 +22,37 @@ RSpec.describe "user does not have link to empty cart", type: :feature do
     page.find("#cart").click
 
     expect(current_path).to eq cart_path
+
+    # within(".cart-options") do
+    #   fill_in 'funding_amount', with: "300"
+    #   click_button "Set Amount"
+    # end
+
+    # expect(page).to have_content "$300.00"
+    # expect(project.status).to eq("active")
+
+    # click_link "Checkout"
+    # project.reload
+
+    # expect(current_path).to eq orders_path
+    # expect(project.status).to eq("funded")
+
+    # visit projects_path
+    # expect(page).to_not have_content(project.name)
+  end
+
+  scenario "user gets redirected home when she empties cart" do
+    visit projects_path
+
+    first(:link, "Fund This Project").click
+
+    page.find("#cart").click
+
+    expect(current_path).to eq cart_path
+    expect(page).to have_content(project.name)
+
+    click_link("Remove")
+
+    expect(current_path).to eq(root_path)
   end
 end
