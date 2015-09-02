@@ -3,13 +3,13 @@ require "rails_helper"
 RSpec.describe "collaborator views admin pages", type: :feature do
   let!(:company) { Fabricate(:company) }
   let!(:admin) { Fabricate(:user,
-                           company_id: company.id,
-                           roles: %w(company_admin)) }
+                            company_id: company.id,
+                            roles: %w(company_admin)) }
   let!(:collaborator) { Fabricate(:user,
-                          username: "collaborator",
-                          company_id: company.id,
-                          roles: %w(collaborator),
-                          email: "collaborator@email.com") }
+                                   username: "collaborator",
+                                   company_id: company.id,
+                                   roles: %w(collaborator),
+                                   email: "collaborator@email.com") }
 
   context "a company collaborator" do
     it "views the admin pages" do
