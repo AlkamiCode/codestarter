@@ -5,6 +5,7 @@ class Seed
     seed.generate_categories
     seed.generate_projects
     seed.generate_registered_user_role
+    seed.generate_collaborator_role
     seed.generate_former_collaborator_role
     seed.generate_company_admin_role
     seed.generate_customers
@@ -55,7 +56,7 @@ class Seed
         password: "password",
         email: Faker::Internet.email,
       )
-      customer.roles << Role.find(rand(1..2))
+      customer.roles << Role.find(rand(1..3))
       puts "Customer #{i}: #{customer.username} successfully created!"
     end
   end
@@ -68,7 +69,7 @@ class Seed
         email: Faker::Internet.email,
         company_id: i + 1,
       )
-      admin.roles << Role.find(3)
+      admin.roles << Role.find(4)
       puts "Company admin #{i}: #{admin.username} successfully created!"
     end
   end
@@ -80,7 +81,7 @@ class Seed
       email: "jorge@turing.io",
       company_id: 1,
     )
-    jorge.roles << Role.find(3)
+    jorge.roles << Role.find(4)
     puts "jorge successfully created!"
   end
 
@@ -92,6 +93,11 @@ class Seed
   def generate_company_admin_role
     Role.create!(name: "company_admin")
     puts "Company admin role successfully created!"
+  end
+
+  def generate_collaborator_role
+    Role.create!(name: "collaborator")
+    puts "Collaborator role successfully created!"
   end
 
   def generate_former_collaborator_role
