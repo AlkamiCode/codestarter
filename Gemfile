@@ -21,6 +21,7 @@ gem "traceroute"
 gem 'color_routes'
 gem 'aasm'
 gem 'jquery-ui-rails'
+gem 'figaro'
 
 group :development, :test do
   gem 'fabrication'
@@ -30,6 +31,7 @@ group :development, :test do
   gem "capybara"
   gem "launchy"
   gem "rspec-rails"
+  gem "capybara-email"
   gem "database_cleaner"
   gem "simplecov"
   gem "mocha"
