@@ -1,7 +1,6 @@
 class NotificationsController < ApplicationController
   def create
     NotificationsMailer.contact(email_params).deliver_now
-    redirect_to :back, notice: "Email sent."
   end
 
   private
