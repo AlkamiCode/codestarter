@@ -12,6 +12,7 @@ class Companies::UsersController < Companies::CompaniesController
         "#{@user.username.capitalize} is already a registered collaborator."
     else
       @user.roles << Role.where(name: "collaborator").first_or_initialize
+      send_registration_email(@user)
       @user.update_attribute("company_id", current_company.id)
     end
     render :new
@@ -42,5 +43,11 @@ class Companies::UsersController < Companies::CompaniesController
   def search
     @user = User.find_by(username: params[:searchfield])
     render :new
+  end
+
+  private
+
+  def send_registration_email(user)
+    NotificationMailer.contact(user.email).deliver_now
   end
 end

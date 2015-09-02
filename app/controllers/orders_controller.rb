@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
             end
             project.update_attributes!(status: 1) if project.current_funding >= project.funding_goal
           end
+        send_registration_email(current_user)
         flash[:success] = "Successfully funded projects!"
         session[:cart] = nil
         redirect_to orders_path
@@ -26,5 +27,11 @@ class OrdersController < ApplicationController
       flash[:danger] = "You need to log in to check out"
       redirect_to :back
     end
+  end
+
+  private
+
+  def send_registration_email(user)
+    NotificationMailer.contact(user.email).deliver_now
   end
 end
