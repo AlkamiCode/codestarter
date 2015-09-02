@@ -1,22 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe OrderItem, type: :model do
-  before do
-    @user = User.create!(username: "mitch", password: "password", role: 0)
-    @item = Item.create!(title: "dinosaur", description: "aksdhk", price: 3)
-    @order = Order.create!(user_id: @user.id, status: 0)
-    @order_item = OrderItem.create!(quantity: 2, item_id: @item.id, order_id: @order.id)
+  let!(:user) { Fabricate(:user, roles: %w(registered_user)) }
+  let!(:project) { Fabricate(:project) }
+  let!(:company) { Fabricate(:company) }
+  let!(:order) { Order.create!(user_id: user.id) }
+  let!(:order_item) { OrderItem.create!(funding_amount: 200, project_id: project.id, order_id: order.id, company_id: company.id) }
+
+  it "belongs to a project" do
+    expect(order_item.project_id).to eq(project.id)
   end
 
-  xit "belongs to an item" do
-    expect(@order_item.item_id).to eq(@item.id)
+  it "belongs to a company" do
+    expect(order_item.company_id).to eq(company.id)
   end
 
-  xit "belongs to an order" do
-    expect(@order_item.order_id).to eq(@order.id)
+  it "belongs to an order" do
+    expect(order_item.order_id).to eq(order.id)
   end
 
-  xit "has a quantity" do
-    expect(@order_item.quantity).to eq(2)
+  it "has a funding amount" do
+    expect(order_item.funding_amount).to eq(200)
   end
 end

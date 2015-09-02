@@ -11,40 +11,65 @@
     <div class="row">
       <%= render 'layouts/sidebar' %>
 
-      <div class="col-md-9 collaborators">
+      <div class="col-md-9">
         <h2 id="content-header">Collaborators</h2>
         <% if current_user.company_admin? %>
-          <h4><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h4>
+          <h3><%= link_to "Add Collaborator", new_company_user_path(company: current_company.url) %></h3>
         <% end %>
 
-        <div class="table-responsive">
-          <table class="table table-striped orders">
+          <div class="collaborators">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th></th>
+                </tr>
 
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th></th>
-            </tr>
-
-            <% if current_company.collaborators %>
-              <% current_company.collaborators.each do |collaborator| %>
-                <tr id="collaborator-<%= collaborator.id %>">
-                <%= content_tag_for :tr, collaborator do %>
-                  <td><%= collaborator.username %></td>
-                  <td><%= collaborator.email %></td>
-                  <% if current_user.company_admin? && collaborator.former_collaborator? %>
-                    <td class="reinstate"><%= link_to "Reinstate", reinstate_company_user_path(company: current_company.url, id: collaborator.id, reinstate: "reinstate"), method: :post %></td>
-                    <% elsif current_user.company_admin? %>
-                      <td class="remove"><%= link_to "Remove", remove_collaborator_company_user_path(company: current_company.url, id: collaborator.id), method: :post %></td>
+                <% if current_company.collaborators %>
+                  <% current_company.collaborators.each do |collaborator| %>
+                    <tr id="collaborator-<%= collaborator.id %>">
+                    <%= content_tag_for :tr, collaborator do %>
+                      <td><%= collaborator.username %></td>
+                      <td><%= collaborator.email %></td>
+                      <% if current_user.company_admin? && collaborator.former_collaborator? %>
+                        <td class="reinstate"><%= link_to "Reinstate", reinstate_company_user_path(company: current_company.url, id: collaborator.id, reinstate: "reinstate"), method: :post %></td>
+                        <% elsif current_user.company_admin? %>
+                          <td class="remove"><%= link_to "Remove", remove_collaborator_company_user_path(company: current_company.url, id: collaborator.id), method: :post %></td>
+                        <% end %>
+                      </tr>
                     <% end %>
-                  </tr>
+                  <% end %>
                 <% end %>
-              <% end %>
-            <% end %>
-          </table>
+              </table>
+            </div>
+          </div>
+
+          <div class="admins">
+            <h2 id="content-header">Company Admins</h2>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th></th>
+                </tr>
+
+                <% current_company.company_admins.each do |admin| %>
+                  <tr id="collaborator-<%= admin.id %>">
+                  <%= content_tag_for :tr, admin do %>
+                    <td><%= admin.username %></td>
+                    <td><%= admin.email %></td>
+                    <td></td>
+                  </tr>
+                  <% end %>
+                <% end %>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
+</div>
 <hr>
