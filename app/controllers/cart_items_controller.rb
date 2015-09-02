@@ -12,6 +12,7 @@ class CartItemsController < ApplicationController
     project = Project.find(params[:item_id])
     cart.add_project(project)
     session[:cart] = cart.data
+    flash[:success] = "Added #{project.name} To Cart"
     redirect_to :back
   end
 

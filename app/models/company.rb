@@ -14,7 +14,13 @@ class Company < ActiveRecord::Base
   end
 
   def collaborators
-    User.where(company_id: id)
+    users = User.where(company_id: id)
+    users.reject(&:company_admin?)
+  end
+
+  def company_admins
+    users = User.where(company_id: id)
+    users.select(&:company_admin?)
   end
 
   def former_collaborators

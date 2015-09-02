@@ -9,9 +9,10 @@ class OrdersController < ApplicationController
       @order.cart_data = session[:cart] if session[:cart]
       if @order.save
           @order.projects.each do |project|
-            updated_current_funding = project.current_funding + params[:funding_amount].to_f
-            project.update_attributes!(current_funding: updated_current_funding)
-
+            cart.items.each do |item|
+              updated_current_funding = project.current_funding + item.funding_amount.to_f
+              project.update_attributes!(current_funding: updated_current_funding)
+            end
             project.update_attributes!(status: 1) if project.current_funding >= project.funding_goal
           end
         flash[:success] = "Successfully funded projects!"
