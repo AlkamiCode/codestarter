@@ -7,7 +7,7 @@ RSpec.describe NotificationMailer, type: :mailer do
 
     it "receives an email confirming successful registration" do
       user.save!
-      NotificationMailer.contact(user.email, "register").deliver
+      NotificationMailer.contact(user.email, "register").deliver_now
       email = ActionMailer::Base.deliveries.last
 
       expect(email.to.first).to eq(user.email)
