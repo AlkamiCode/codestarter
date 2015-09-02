@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  after_action :send_registration_email, only: [:create]
+
   def create
     @user = User.new(user_params)
 
@@ -34,5 +36,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :email)
+  end
+
+  def send_registration_email
+    NotificationMailer.contact(@user.email, "register").deliver_now
   end
 end
