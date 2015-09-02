@@ -32,7 +32,6 @@
                   <td><%= project.description %></td>
                   <td><%= number_to_currency project.funding_goal %></td>
                   <td><%= number_to_currency project.current_funding %></td>
-                  <td id="remove"><%= link_to "Remove", company_user_path(company: current_company.url, id: project.id), method: :put %></td>
                   <td><%= link_to "View", company_project_path(company: current_company.url, id: project.id) %></td>
                 </tr>
             <% end %>
