@@ -32,10 +32,10 @@
                 <%= content_tag_for :tr, collaborator do %>
                   <td><%= collaborator.username %></td>
                   <td><%= collaborator.email %></td>
-                  <% if collaborator.former_collaborator? %>
-                    <td class="reinstate"><%= link_to "Reinstate", company_user_path(company: current_company.url, id: collaborator.id, reinstate: "reinstate"), method: :put %></td>
-                    <% else %>
-                      <td class="remove"><%= link_to "Remove", company_user_path(company: current_company.url, id: collaborator.id), method: :put %></td>
+                  <% if current_user.company_admin? && collaborator.former_collaborator? %>
+                    <td class="reinstate"><%= link_to "Reinstate", reinstate_company_user_path(company: current_company.url, id: collaborator.id, reinstate: "reinstate"), method: :post %></td>
+                    <% elsif current_user.company_admin? %>
+                      <td class="remove"><%= link_to "Remove", remove_collaborator_company_user_path(company: current_company.url, id: collaborator.id), method: :post %></td>
                     <% end %>
                   </tr>
                 <% end %>

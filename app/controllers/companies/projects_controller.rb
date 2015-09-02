@@ -49,6 +49,7 @@ class Companies::ProjectsController < Companies::CompaniesController
 
   def destroy
     @project.delete
+    flash[:success] = "#{@project.name} successfully removed."
     redirect_to company_projects_path(company: current_company.url)
   end
 
