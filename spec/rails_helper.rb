@@ -24,4 +24,9 @@ RSpec.configure do |config|
       click_button "Log In"
     end
   end
+
+
+  def cart
+    @cart ||= Cart.new(session[:cart])
+  end
 end

@@ -1,6 +1,11 @@
 class CartItemsController < ApplicationController
   def index
-    @cart_items = cart.items
+    if cart.data.empty?
+      flash[:success] = "Your Cart Is Empty! Go Fill It Up!"
+      redirect_to root_path
+    else
+      @cart_items = cart.items
+    end
   end
 
   def create
