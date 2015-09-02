@@ -14,8 +14,10 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery-ui/accordion
+//= require jquery-ui/tooltip
 //= require_tree .
 
 $(function() {
   $( "#accordion" ).accordion();
+  $( document ).tooltip();
 });

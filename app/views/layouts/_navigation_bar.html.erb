@@ -54,7 +54,11 @@
             </li>
           <% end %>
             <li>
-              <a href="/cart"><%= fa_icon "shopping-cart 2x"%><span class="badge"><%= cart.items.count %></span></a>
+            <% if @cart.nil? %>
+              <a id="cart" href="#" title="Can't visit empty cart"><%= fa_icon "shopping-cart 2x"%><span class="badge"><%= cart.items.count %></span></a>
+            <% else %>
+              <a id="cart" href="/cart"><%= fa_icon "shopping-cart 2x"%><span class="badge"><%= cart.items.count %></span></a>
+            <% end %>
             </li>
       </ul>
     </div>
