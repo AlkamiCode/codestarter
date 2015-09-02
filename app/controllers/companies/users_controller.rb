@@ -36,7 +36,7 @@ class Companies::UsersController < Companies::CompaniesController
   #   end
   # end
 
-  def remove
+  def remove_collaborator
     if params[:reinstate].nil?
       user = User.find_by(id: params[:id])
       role = user.roles.where(name: "collaborator")
