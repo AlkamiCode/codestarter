@@ -8,13 +8,12 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome, #{@user.username}!"
       redirect_to :back
     else
-      flash[:danger] = "Need Username and Password"
+      flash[:danger] = "There was a problem creating your account. Please try again."
       redirect_to :back
     end
   end
 
   def show
-    @user = User.find(current_user.id)
   end
 
   def update
