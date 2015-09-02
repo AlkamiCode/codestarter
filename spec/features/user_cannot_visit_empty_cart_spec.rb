@@ -5,9 +5,7 @@ RSpec.describe "user does not have link to empty cart", type: :feature do
   let!(:company) { Fabricate(:company) }
   let!(:project) { Fabricate(:project, company_id: company.id) }
 
-  scenario "can only visit cart page when cart has an item" do
-    session = {}
-
+  scenario "can only visit cart page when cart has a cart_item" do
     visit root_path
 
     page.find("#cart").click
@@ -24,28 +22,5 @@ RSpec.describe "user does not have link to empty cart", type: :feature do
     page.find("#cart").click
 
     expect(current_path).to eq cart_path
-    binding.pry
-
-
-    # page.find("a[href='/cart']").click
-
-    # expect(current_path).to eq cart_path
-
-    # within(".cart-options") do
-    #   fill_in 'funding_amount', with: "300"
-    #   click_button "Set Amount"
-    # end
-
-    # expect(page).to have_content "$300.00"
-    # expect(project.status).to eq("active")
-
-    # click_link "Checkout"
-    # project.reload
-
-    # expect(current_path).to eq orders_path
-    # expect(project.status).to eq("funded")
-
-    # visit projects_path
-    # expect(page).to_not have_content(project.name)
   end
 end
