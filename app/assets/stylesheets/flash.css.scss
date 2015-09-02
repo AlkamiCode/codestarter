@@ -1,4 +1,7 @@
 .alert {
   text-align: center;
   font-size: 2em;
+  position: absolute;
+  z-index: 2;
+  width: inherit;
 }
