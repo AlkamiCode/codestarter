@@ -1,5 +1,7 @@
 .alert {
   text-align: center;
-  width: 30%;
-  margin-left: 35%;
+  font-size: 2em;
+  position: absolute;
+  z-index: 2;
+  width: inherit;
 }

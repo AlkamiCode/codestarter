@@ -1,3 +1,3 @@
 $(document).ready(function(){
-  $(".alert").fadeOut(5000);
+  $(".alert").fadeOut(7000);
 });
