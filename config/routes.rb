@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :cart_items, only: [:index, :create, :update, :destroy]
-  resources :notifications, only: [:create]
 
   namespace :companies, path: ':company', as: :company do
     get '/dashboard', to: 'companies#dashboard'

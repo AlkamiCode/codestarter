@@ -17,11 +17,13 @@ module JurassicParka
     config.action_mailer.delivery_method = :smtp
 
     config.action_mailer.smtp_settings = {
-      address:                "smtp.madrillapp.com",
-      domain:                 "codestarter.herokuapp.com",
+      address:                "smtp.mandrillapp.com",
+      port:                   587,
+      domain:                 ENV['mandrill_domain'],
       user_name:              "lovisasvallingson@gmail.com",
       password:               ENV['mandrill_api_key'],
-      enable_starttls_auto:   true
+      authentication:         'plain',
+      enable_starttls_auto:   true,
     }
 
     config.active_record.raise_in_transactional_callbacks = true

@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  def contact(email, type)
+  def contact(email)
     @message = "Thanks for signing up, we hope you find some great projects to fund!"
 
     mail(

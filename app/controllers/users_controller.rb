@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  after_action :send_registration_email, only: [:create]
-
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
 
-    if @user.save
+    if @user
       @user.roles << Role.find_or_create_by(name: 'registered_user')
       session[:user_id] = @user.id
+      send_registration_email
       flash[:success] = "Welcome, #{@user.username}!"
       redirect_to :back
     else
@@ -35,10 +34,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :email)
+    params.require(:user).permit(:username, :password, :password_confirmation, :email)
   end
 
   def send_registration_email
-    NotificationMailer.contact(@user.email, "register").deliver_now
+    NotificationMailer.contact(@user.email).deliver_now
   end
 end
