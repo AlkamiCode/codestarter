@@ -8,14 +8,14 @@ class OrdersController < ApplicationController
       @order = current_user.orders.build
       @order.cart_data = session[:cart] if session[:cart]
       if @order.save
-          @order.projects.each do |project|
-            cart.items.each do |item|
-              updated_current_funding = project.current_funding + item.funding_amount.to_f
-              project.update_attributes!(current_funding: updated_current_funding)
-            end
-            project.update_attributes!(status: 1) if project.current_funding >= project.funding_goal
+        @order.projects.each do |project|
+          cart.items.each do |item|
+            updated_current_funding = project.current_funding + item.funding_amount.to_f
+            project.update_attributes!(current_funding: updated_current_funding)
           end
         send_checkout_email(current_user, "checkout")
+          project.update_attributes!(status: 1) if project.current_funding >= project.funding_goal
+        end
         flash[:success] = "Successfully funded projects!"
         session[:cart] = nil
         redirect_to orders_path

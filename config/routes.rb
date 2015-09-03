@@ -4,14 +4,13 @@ Rails.application.routes.draw do
   resources :companies, only: [:index]
   resources :orders, only: [:create, :index]
   resources :projects, only: [:index, :show]
-  resources :categories, only: [:index, :show]
+  resources :categories, only: [:show]
   resources :cart_items, only: [:index, :create, :update, :destroy]
 
   namespace :companies, path: ':company', as: :company do
     get '/dashboard', to: 'companies#dashboard'
     resources :projects
-    resources :orders, only: [:index, :show, :create]
-    resources :users, only: [:show, :index, :new, :create, :update] do
+    resources :users, only: [:index, :new, :create] do
       member do
         get :search
         post :remove_collaborator
