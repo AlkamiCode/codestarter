@@ -48,9 +48,14 @@ class Companies::ProjectsController < Companies::CompaniesController
   end
 
   def destroy
-    @project.delete
-    flash[:success] = "#{@project.name} successfully removed."
-    redirect_to company_projects_path(company: current_company.url)
+    if current_company == current_user.company
+      @project.delete
+      flash[:success] = "#{@project.name} successfully removed."
+      redirect_to company_projects_path(company: current_company.url)
+    else
+      flash[:danger] = "You are not authorized to view this page."
+      redirect_to root_path
+    end
   end
 
   private
