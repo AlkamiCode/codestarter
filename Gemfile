@@ -21,6 +21,7 @@ gem "traceroute"
 gem 'color_routes'
 gem 'aasm'
 gem 'jquery-ui-rails'
+gem 'figaro'
 
 group :development, :test do
   gem 'fabrication'

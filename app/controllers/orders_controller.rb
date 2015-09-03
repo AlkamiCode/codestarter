@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
             updated_current_funding = project.current_funding + item.funding_amount.to_f
             project.update_attributes!(current_funding: updated_current_funding)
           end
+        send_checkout_email(current_user, "checkout")
           project.update_attributes!(status: 1) if project.current_funding >= project.funding_goal
         end
         flash[:success] = "Successfully funded projects!"
@@ -26,5 +27,11 @@ class OrdersController < ApplicationController
       flash[:danger] = "You need to log in to check out"
       redirect_to :back
     end
+  end
+
+  private
+
+  def send_checkout_email(user, type)
+    NotificationMailer.contact(user.email, type).deliver_now
   end
 end
