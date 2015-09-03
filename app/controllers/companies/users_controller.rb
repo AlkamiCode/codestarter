@@ -12,7 +12,7 @@ class Companies::UsersController < Companies::CompaniesController
         "#{@user.username.capitalize} is already a registered collaborator."
     else
       @user.roles << Role.where(name: "collaborator").first_or_initialize
-      send_registration_email(@user, "collaborator")
+      send_collaborator_email(@user, "collaborator")
       @user.update_attribute("company_id", current_company.id)
     end
     render :new
@@ -47,7 +47,7 @@ class Companies::UsersController < Companies::CompaniesController
 
   private
 
-  def send_registration_email(user, type)
+  def send_collaborator_email(user, type)
     NotificationMailer.contact(user.email, type).deliver_now
   end
 end
