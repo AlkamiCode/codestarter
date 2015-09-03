@@ -42,6 +42,9 @@ class Companies::UsersController < Companies::CompaniesController
 
   def search
     @user = User.find_by(username: params[:searchfield])
+    unless @user
+      flash[:danger] = "Could not find the specified user"
+    end
     render :new
   end
 
