@@ -18,7 +18,7 @@ class Seed
       project = Project.create!(
         name: Faker::App.name,
         description: Faker::Hacker.say_something_smart,
-        image: Faker::Avatar.image,
+        image: Faker::Company.logo,
         company_id: rand(1..20),
         category_id: rand(1..10),
         current_funding: rand(0..2000),
