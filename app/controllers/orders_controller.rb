@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if current_user
+    if signed_in?
       @order = current_user.orders.build
       @order.cart_data = session[:cart] if session[:cart]
       if @order.save

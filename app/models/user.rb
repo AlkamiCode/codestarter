@@ -29,4 +29,10 @@ class User < ActiveRecord::Base
   def former_collaborator?
     roles.exists?(name: 'former_collaborator')
   end
+
+  def change_role(from:, to:)
+    role = roles.where(name: from)
+    roles.delete(role)
+    roles << Role.create(name: to)
+  end
 end
