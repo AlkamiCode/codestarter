@@ -24,7 +24,7 @@
 
               <%= form_tag cart_item_path(cart_item), method: :put do %>
                 <div class="form-group dropdown-toggle">
-                  <%= number_field_tag 'funding_amount', nil, max: (cart_item.funding_goal - cart_item.current_funding) %>
+                  <%= number_field_tag 'funding_amount', nil, min: 0, max: (cart_item.funding_goal - cart_item.current_funding) %>
                   <%= button_tag "Set Amount", type: "submit", class: "btn btn-primary" %>
               <% end %>
                   <%= link_to "Remove", cart_item_path(cart_item), method: :delete, class: "btn btn-primary remove-item" %>
