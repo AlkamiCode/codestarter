@@ -23,9 +23,11 @@ class Project < ActiveRecord::Base
   end
 
   def funding_in_percentage
-    current_funding > funding_goal ?
-                      100 :
-                      ((current_funding.to_f / funding_goal.to_f) * 100).to_i
+    if current_funding > funding_goal
+      100
+    else
+      ((current_funding.to_f / funding_goal.to_f) * 100).to_i
+    end
   end
 
   def pretty_end_date
