@@ -1,4 +1,9 @@
 <h3 class="fundings">FUNDINGS</h3>
+
+  <% if @orders == [] %>
+    <%= render 'layouts/no_fundings_placeholder' %>
+  <% end %>
+
 <div id="accordion">
   <% if @orders.size > 0 %>
     <% @orders.each do |order| %>
