@@ -17,7 +17,7 @@ class Cart
   end
 
   def add_project(project)
-    data[project.id.to_s] ? true : data[project.id.to_s] = 0
+    data[project.id.to_s] ||= 0
   end
 
   def remove_project(project)
