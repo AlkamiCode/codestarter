@@ -26,10 +26,10 @@ class Companies::UsersController < Companies::CompaniesController
   end
 
   def reinstate
-      user = User.find(params[:id])
-      user.change_role(from: "former_collaborator", to: "collaborator")
-      flash[:success] = "#{user.username} is now a collaborator"
-      redirect_to :back
+    user = User.find(params[:id])
+    user.change_role(from: "former_collaborator", to: "collaborator")
+    flash[:success] = "#{user.username} is now a collaborator"
+    redirect_to :back
   end
 
   def search
