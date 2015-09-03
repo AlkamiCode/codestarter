@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if @user
       @user.roles << Role.find_or_create_by(name: 'registered_user')
       session[:user_id] = @user.id
-      send_registration_email(@user)
+      send_registration_email(@user, "register")
       flash[:success] = "Welcome, #{@user.username}!"
       redirect_to :back
     else
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :password, :password_confirmation, :email)
   end
 
-  def send_registration_email(user)
-    NotificationMailer.contact(user.email).deliver_now
+  def send_registration_email(user, type)
+    NotificationMailer.contact(user.email, type).deliver_now
   end
 end
