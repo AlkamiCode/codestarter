@@ -14,6 +14,16 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def build_invoice(cart)
+    projects.each do |project|
+      cart.items.each do |item|
+        updated_current_funding = project.current_funding + item.funding_amount.to_f
+        project.update_attributes!(current_funding: updated_current_funding)
+      end
+      project.update_attributes!(status: 1) if project.current_funding >= project.funding_goal
+    end
+  end
+
   private
 
   def create_from_cart
