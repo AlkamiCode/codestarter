@@ -10,7 +10,7 @@ class Seed
     seed.generate_collaborator_role
     seed.generate_customers
     seed.generate_company_admins
-    seed.generate_jorge
+    seed.generate_alkami
   end
 
   def generate_projects
@@ -74,15 +74,15 @@ class Seed
     end
   end
 
-  def generate_jorge
-    jorge = User.create!(
-      username: "jorge",
-      password: "password",
-      email: "jorge@turing.io",
+  def generate_alkami
+    alkami = User.create!(
+      username: "alkami",
+      password: "alkami21",
+      email: "dmitry@alkami.io",
       company_id: 1,
     )
-    jorge.roles << Role.find(3)
-    puts "jorge successfully created!"
+    alkami.roles << Role.find(3)
+    puts "alkami successfully created!"
   end
 
   def generate_registered_user_role
