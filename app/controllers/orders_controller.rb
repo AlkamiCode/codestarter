@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
       @order.cart_data = session[:cart] if session[:cart]
       if @order.save
         @order.build_invoice(cart)
-        send_checkout_email(current_user, "checkout")
+        # send_checkout_email(current_user, "checkout")
 
         flash[:success] = "Successfully funded projects!"
         session[:cart] = nil

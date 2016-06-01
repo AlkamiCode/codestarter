@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if @user
       @user.roles << Role.find_or_create_by(name: 'registered_user')
       session[:user_id] = @user.id
-      send_registration_email(@user, "register")
+      # send_registration_email(@user, "register")
       flash[:success] = "Welcome, #{@user.username}!"
       redirect_to :back
     else
